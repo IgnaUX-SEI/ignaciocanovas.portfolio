@@ -1,5 +1,11 @@
 {
   "outputDirectory": "public",
+  "functions": {
+    "api/chat.js": {
+      "memory": 128,
+      "maxDuration": 10
+    }
+  },
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]
