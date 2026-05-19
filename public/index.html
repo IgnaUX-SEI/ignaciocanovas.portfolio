@@ -158,6 +158,40 @@ nav{display:flex;justify-content:space-between;align-items:center;height:52px;pa
 .chat-input-row input::placeholder{color:#999}
 .chat-send{width:26px;height:26px;border-radius:50%;background:#111;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:opacity .2s}
 .chat-send:hover{opacity:.7}.chat-send:disabled{opacity:.3;cursor:not-allowed}
+.paper-hero{padding:60px 52px 48px;max-width:800px;margin:0 auto;width:100%}
+.paper-meta{display:flex;gap:32px;font-size:12px;padding-top:20px;border-top:1px solid var(--line);flex-wrap:wrap}
+.paper-meta-item{display:flex;flex-direction:column;gap:3px}
+.paper-meta-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.paper-meta-value{font-size:13px;color:var(--ink2)}
+.paper-body{max-width:800px;margin:0 auto;padding:0 52px 100px;display:grid;grid-template-columns:160px 1fr;gap:56px;align-items:start;width:100%}
+.paper-sidebar{position:sticky;top:62px}
+.paper-nav{list-style:none}
+.paper-nav a{display:block;font-size:11.5px;font-weight:500;color:var(--ink3);text-decoration:none;padding:8px 0;border-bottom:1px solid var(--line);transition:color .2s,padding-left .2s;cursor:pointer}
+.paper-nav a:hover,.paper-nav a.active{color:var(--ink);padding-left:6px}
+.psec{padding:48px 0;border-bottom:1px solid var(--line);opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s}
+.psec.visible{opacity:1;transform:translateY(0)}
+.psec:last-child{border-bottom:none}
+.p-eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:14px}
+.p-title{font-size:22px;font-weight:700;letter-spacing:-.025em;color:var(--ink);margin-bottom:16px;line-height:1.2}
+.p-body{font-size:15px;font-weight:400;line-height:1.75;color:var(--ink2);max-width:580px}
+.p-body p+p{margin-top:16px}
+.p-quote{margin:24px 0;padding:20px 24px;background:var(--card);border-radius:var(--r);font-size:15px;font-weight:500;line-height:1.5;color:var(--ink);font-style:italic;max-width:580px}
+.p-steps{display:flex;flex-direction:column;max-width:580px;margin-top:20px}
+.p-step{display:grid;grid-template-columns:24px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);align-items:start}
+.p-step:first-child{border-top:1px solid var(--line)}
+.p-step-num{font-size:12px;font-weight:700;color:var(--ink3);padding-top:1px}
+.p-step-title{font-size:13.5px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.p-step-body{font-size:12.5px;font-weight:400;line-height:1.5;color:var(--ink2)}
+.p-callout{max-width:580px;margin-top:20px;padding:20px 24px;border-left:3px solid var(--ink);background:var(--card);border-radius:0 var(--r) var(--r) 0}
+.p-callout-title{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.p-callout-body{font-size:13px;font-weight:400;line-height:1.55;color:var(--ink2)}
+.p-table{max-width:580px;margin-top:20px;border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
+.p-row{display:grid;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--card);gap:8px;align-items:start;font-size:12.5px}
+.p-row:last-child{border-bottom:none}
+.p-row.hdr{background:var(--ink);color:rgba(255,255,255,.5);font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.p-path{display:flex;align-items:center;gap:6px;flex-wrap:wrap;max-width:580px;margin-top:16px;padding:14px 18px;background:var(--card);border-radius:var(--r);font-size:12.5px}
+.p-path-step{font-weight:600;color:var(--ink)}
+.p-path-arr{color:var(--ink3);font-size:10px}
 </style>
 </head>
 <body>
@@ -188,7 +222,7 @@ nav{display:flex;justify-content:space-between;align-items:center;height:52px;pa
           <div class="feat-title">Data Mise en Place (DMP)</div>
           <div class="feat-desc">A methodology for keeping humans accountable in AI-assisted research — so findings can be defended, not just delivered. Built by a former Michelin-starred chef who learned that if you cannot trace it back to the source, it does not belong on the plate.</div>
         </div>
-        <button class="read-btn">Read Paper &nbsp;→</button>
+        <button class="read-btn" onclick="go('paper')">Read Paper &nbsp;→</button>
       </div>
       <div class="eyebrow">Selected Work</div>
       <div class="work-grid">
@@ -516,7 +550,185 @@ nav{display:flex;justify-content:space-between;align-items:center;height:52px;pa
 </div>
 
 <!-- ══════════ CHAT ══════════ -->
-<button class="chat-bubble" id="chatBubble"><span class="bubble-icon">✦</span></button>
+<!-- ══════════ PAPER ══════════ -->
+<div id="paper" class="page">
+  <nav>
+    <button class="wordmark" onclick="go('home')">Ignacio Cánovas <span>— AI Product Strategist, Accenture Song</span></button>
+    <button class="back-btn" onclick="go('home')">← Back</button>
+  </nav>
+  <div class="paper-hero">
+    <div class="paper-label">Featured Paper · Version 2.0 — May 2026</div>
+    <h1 class="cs-title">Data Mise en Place</h1>
+    <p class="cs-sub">A framework for traceable AI synthesis in qualitative research — so findings can be defended, not just delivered.</p>
+    <div class="paper-meta">
+      <div class="paper-meta-item"><span class="paper-meta-label">Author</span><span class="paper-meta-value">Ignacio Cánovas</span></div>
+      <div class="paper-meta-item"><span class="paper-meta-label">Status</span><span class="paper-meta-value">Under review for publication</span></div>
+      <div class="paper-meta-item"><span class="paper-meta-label">Developed</span><span class="paper-meta-value">2022 – 2026</span></div>
+      <div class="paper-meta-item"><span class="paper-meta-label">Affiliation</span><span class="paper-meta-value">Accenture Song, Chicago</span></div>
+    </div>
+  </div>
+  <div class="paper-body">
+    <aside class="paper-sidebar">
+      <ul class="paper-nav" id="paperNav">
+        <li><a onclick="scrollPaper('p-abstract')">Abstract</a></li>
+        <li><a onclick="scrollPaper('p-problem')">The Problem</a></li>
+        <li><a onclick="scrollPaper('p-theory')">Theory</a></li>
+        <li><a onclick="scrollPaper('p-atomic')">Atomic Observations</a></li>
+        <li><a onclick="scrollPaper('p-patha')">Path A: Generative</a></li>
+        <li><a onclick="scrollPaper('p-pathb')">Path B: Evaluative</a></li>
+        <li><a onclick="scrollPaper('p-output')">What It Produces</a></li>
+        <li><a onclick="scrollPaper('p-implications')">Implications</a></li>
+      </ul>
+    </aside>
+    <main>
+      <div class="psec" id="p-abstract">
+        <div class="p-eyebrow">Abstract</div>
+        <h2 class="p-title">The quality of AI synthesis is not determined by the model alone.</h2>
+        <div class="p-body">
+          <p>This paper proposes a structured framework for AI-assisted qualitative synthesis that maintains the traceability and rigor of grounded theory methodology while operating at the speed and scale that modern research practice demands.</p>
+          <p>The framework addresses a gap that current AI tools do not solve: the absence of a verifiable chain of custody from raw participant data to synthesized insight. It was developed from practice between 2022 and 2026.</p>
+          <p>The central argument is twofold. First, the quality of AI synthesis depends primarily on the structure of the data entering the system. Second, human presence is not optional in AI-assisted research — it is a foundational requirement. Without a researcher who has witnessed the data, there is no basis for validating what the AI produces.</p>
+        </div>
+        <div class="p-quote">"If you cannot trace it back to the source, it does not belong on the plate." — The mise en place principle, applied to research.</div>
+      </div>
+
+      <div class="psec" id="p-problem">
+        <div class="p-eyebrow">The Problem</div>
+        <h2 class="p-title">AI tools appear trustworthy regardless of input quality.</h2>
+        <div class="p-body">
+          <p>AI language models are designed — at the interface level — to appear trustworthy. They deliver outputs with confidence and fluency regardless of the quality of the input. When researchers feed unstructured, noisy, or poorly organized data into these systems, the output can appear rigorous while being partially or wholly fabricated.</p>
+          <p>This is not a failure of the technology. It is a failure of the methodology surrounding it. Most practitioners have responded in one of two ways: accepting AI output without verification, or rejecting AI assistance entirely. Both responses are inadequate.</p>
+          <p>A third path exists: designing the data structure and human presence that makes AI synthesis verifiable. This is what the framework proposes.</p>
+        </div>
+        <div class="p-callout">
+          <div class="p-callout-title">The insight that drives the framework</div>
+          <div class="p-callout-body">AI tools constrained to a well-defined input produce more reliable output than AI tools given unconstrained access to raw data. The framework applies constraint through data architecture and structured prompting — making any AI tool more defensible.</div>
+        </div>
+      </div>
+
+      <div class="psec" id="p-theory">
+        <div class="p-eyebrow">Theoretical Grounding</div>
+        <h2 class="p-title">Built from practice. Validated by theory.</h2>
+        <div class="p-body">
+          <p>This framework was developed independently through practice before its connections to existing methodology were recognized. In January 2026, the author encountered grounded theory methodology (Strauss &amp; Corbin, 1998) for the first time and found that the pipeline built through trial and error over three years was structurally identical to what Strauss and Corbin had formalized decades earlier.</p>
+          <p>The parallel is significant. Grounded theory was developed precisely because researchers recognized that imposing analytical frameworks on qualitative data before the data had been examined produced findings that reflected the researcher's assumptions rather than participants' actual experiences. The same risk applies to AI-assisted synthesis.</p>
+          <p>The framework adapts principles from grounded theory for large language model-assisted synthesis — including bottom-up coding from data, researcher immersion, constant comparison, and data saturation.</p>
+        </div>
+      </div>
+
+      <div class="psec" id="p-atomic">
+        <div class="p-eyebrow">Core Concept</div>
+        <h2 class="p-title">An atomic observation is one value. One piece of data.</h2>
+        <div class="p-body">
+          <p>The unit of analysis in this framework is not the sentence. It is the value-bearing claim. A sentence can contain one value or many. The researcher's job — and the AI's job under constraint — is to decompose meaning until each unit is irreducible.</p>
+          <p><strong>The decision rule:</strong> Can this observation be split further without losing a distinct piece of meaning? If yes — split it.</p>
+        </div>
+        <div class="p-quote">One observation = one value = one evidence quote = one evidence type.</div>
+        <div class="p-body" style="margin-top:16px">
+          <p>Common observation types that emerge across research contexts: Preference, Emotional state, Behavioral pattern, Causal relationship, Contradiction, Social validation, Expectation. This is not a fixed taxonomy — different research contexts will surface different types.</p>
+        </div>
+        <div class="p-callout" style="margin-top:20px">
+          <div class="p-callout-title">The backlog principle</div>
+          <div class="p-callout-body">When a statement cannot be cleanly decomposed, it is not discarded — it is preserved with "ambiguity" as its evidence type. If the same unresolved signal appears across multiple participants, the pattern itself becomes attributable. The framework is not anti-ambiguity. It is pro-defensibility.</div>
+        </div>
+      </div>
+
+      <div class="psec" id="p-patha">
+        <div class="p-eyebrow">Path A — Generative Research</div>
+        <h2 class="p-title">The data reveals the themes. You don't impose them.</h2>
+        <div class="p-body"><p>For generative research (interviews, exploratory sessions), the pipeline follows an inductive path. Codes emerge bottom-up from atomic observations. The data generates the code.</p></div>
+        <div class="p-path">
+          <span class="p-path-step">Structured Transcript</span>
+          <span class="p-path-arr">→</span>
+          <span class="p-path-step">Clean Notes</span>
+          <span class="p-path-arr">→</span>
+          <span class="p-path-step">Anonymization</span>
+          <span class="p-path-arr">→</span>
+          <span class="p-path-step">Atomic Observations</span>
+          <span class="p-path-arr">→</span>
+          <span class="p-path-step">Evidence Type</span>
+          <span class="p-path-arr">→</span>
+          <span class="p-path-step">Inductive Codes</span>
+          <span class="p-path-arr">→</span>
+          <span class="p-path-step">Axial Codes</span>
+          <span class="p-path-arr">→</span>
+          <span class="p-path-step">Themes</span>
+        </div>
+        <div class="p-steps" style="margin-top:24px">
+          <div class="p-step"><div class="p-step-num">01</div><div><div class="p-step-title">Structured Transcript</div><div class="p-step-body">Raw transcript + observation notes combined. Speaker labels added, metadata included, observation notes embedded at the exact moments they occurred.</div></div></div>
+          <div class="p-step"><div class="p-step-num">02</div><div><div class="p-step-title">Clean Notes / Reconciliation</div><div class="p-step-body">AI removes filler, normalizes statements, replaces facilitator questions with neutral context lines. Researcher observation notes stay unchanged.</div></div></div>
+          <div class="p-step"><div class="p-step-num">03</div><div><div class="p-step-title">Anonymization</div><div class="p-step-body">All names and sensitive content replaced based on pre-defined anonymization notes. Nothing disappears silently — redactions are flagged.</div></div></div>
+          <div class="p-step"><div class="p-step-num">04</div><div><div class="p-step-title">Atomic Observations</div><div class="p-step-body">Each piece of clean data broken into atomic observations — one idea, one source, no interpretations. Each receives a unique code that travels unchanged through every subsequent stage.</div></div></div>
+          <div class="p-step"><div class="p-step-num">05</div><div><div class="p-step-title">Evidence Type / Taxonomy</div><div class="p-step-body">Applied after all observations exist — never during extraction. The AI classifies against a taxonomy the researcher designed before the pipeline ran.</div></div></div>
+          <div class="p-step"><div class="p-step-num">06</div><div><div class="p-step-title">Inductive → Axial → Themes</div><div class="p-step-body">Codes emerge bottom-up. Inductive codes cluster into axial codes — higher-order patterns visible across participants. Axial codes cluster into themes that name what the data has revealed.</div></div></div>
+        </div>
+      </div>
+
+      <div class="psec" id="p-pathb">
+        <div class="p-eyebrow">Path B — Evaluative Research</div>
+        <h2 class="p-title">The data measures against a known standard.</h2>
+        <div class="p-body"><p>For evaluative research (user testing), deductive clusters are defined by the research design before the pipeline runs. The UX Area is the deductive code — brought in from outside, not discovered from the data.</p></div>
+        <div class="p-path">
+          <span class="p-path-step">Structured Transcript</span>
+          <span class="p-path-arr">→</span>
+          <span class="p-path-step">Clean Notes</span>
+          <span class="p-path-arr">→</span>
+          <span class="p-path-step">Anonymization</span>
+          <span class="p-path-arr">→</span>
+          <span class="p-path-step">Atomic Observations</span>
+          <span class="p-path-arr">→</span>
+          <span class="p-path-step">Evidence Type</span>
+          <span class="p-path-arr">→</span>
+          <span class="p-path-step">UX Area</span>
+          <span class="p-path-arr">→</span>
+          <span class="p-path-step">Cluster Description</span>
+          <span class="p-path-arr">→</span>
+          <span class="p-path-step">Findings</span>
+          <span class="p-path-arr">→</span>
+          <span class="p-path-step">Recommendations</span>
+        </div>
+        <div class="p-callout" style="margin-top:24px">
+          <div class="p-callout-title">The critical reconciliation step</div>
+          <div class="p-callout-body">In user testing, data cleaning is a genuine analytical task — not housekeeping. A participant who says "this is clear" while clicking the wrong button is telling us something important with their behavior that their words are not. The researcher makes that judgment call. The reconciled version becomes the clean note. The AI works from this truth.</div>
+        </div>
+      </div>
+
+      <div class="psec" id="p-output">
+        <div class="p-eyebrow">What It Produces</div>
+        <h2 class="p-title">A structured, queryable knowledge asset — not a deck.</h2>
+        <div class="p-body">
+          <p>The output of this pipeline — whether themes or findings — is defensible, filterable, and honest.</p>
+        </div>
+        <div class="p-steps">
+          <div class="p-step"><div class="p-step-num">✓</div><div><div class="p-step-title">Defensible</div><div class="p-step-body">Every conclusion traces to its source. No finding exists without attributed evidence. The chain from recommendation to participant quote is unbroken.</div></div></div>
+          <div class="p-step"><div class="p-step-num">✓</div><div><div class="p-step-title">Filterable</div><div class="p-step-body">Because observations are structured in a spreadsheet with coded columns, the data can be filtered by participant, session, topic, evidence type, UX area, or business risk.</div></div></div>
+          <div class="p-step"><div class="p-step-num">✓</div><div><div class="p-step-title">Honest</div><div class="p-step-body">Because the pipeline requires human presence at every validation gate, the output reflects what participants actually said and did — not what the model inferred they probably meant.</div></div></div>
+        </div>
+        <div class="p-quote">"Traceability creates auditability, not epistemic validity. What the pipeline guarantees is not that the output is correct — it is that the output is checkable."</div>
+      </div>
+
+      <div class="psec" id="p-implications">
+        <div class="p-eyebrow">Implications</div>
+        <h2 class="p-title">The researcher role is not diminished. It is elevated.</h2>
+        <div class="p-body">
+          <p>Critical thinking moves upstream — into data architecture decisions — and downstream — into validation against lived experience. The researcher who develops these skills becomes more strategically valuable. The researcher who does not risks producing synthesis that looks rigorous and cannot be defended.</p>
+          <p>On hallucinations: this pipeline does not eliminate them. No methodology does. What it changes is detectability. Errors that previously passed unnoticed become visible at the validation gates, because the structured chain of custody gives the researcher something concrete to verify.</p>
+          <p>The pipeline does not prevent AI from making mistakes. It makes mistakes findable. That is the real reliability guarantee.</p>
+        </div>
+        <div class="p-callout">
+          <div class="p-callout-title">About the author</div>
+          <div class="p-callout-body">Ignacio Cánovas is a UX Researcher and AI Experience Designer at Accenture Song, where he developed and applied this framework across research projects spanning automotive, financial services, global search behavior, and enterprise AI agent development. Before technology, he spent nearly a decade in Michelin-starred kitchens across Europe and the Americas — where the standard was simple: if you cannot trace it back to the source, it does not belong on the plate.</div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <div class="next-case" onclick="go('home')">
+    <div><div class="nc-label">Back to</div><div class="nc-title">Portfolio</div></div>
+    <div class="nc-arrow">→</div>
+  </div>
+</div>
+
+
 <div class="chat-panel hidden" id="chatPanel">
   <div class="chat-hdr">
     <div class="chat-id"><span class="chat-spark">✦</span> Hi, I am Igna.</div>
@@ -542,6 +754,7 @@ function go(id){
 }
 function scrollTo02(id){document.getElementById(id)&&document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
 function scrollTo03(id){document.getElementById(id)&&document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
+function scrollPaper(id){document.getElementById(id)&&document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
 
 const menuBtn=document.getElementById('menuBtn');
 const dropdown=document.getElementById('dropdown');
