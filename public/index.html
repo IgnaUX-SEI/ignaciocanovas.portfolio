@@ -158,6 +158,26 @@ nav{display:flex;justify-content:space-between;align-items:center;height:52px;pa
 .chat-input-row input::placeholder{color:#999}
 .chat-send{width:26px;height:26px;border-radius:50%;background:#111;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;transition:opacity .2s}
 .chat-send:hover{opacity:.7}.chat-send:disabled{opacity:.3;cursor:not-allowed}
+/* CTA ICONS */
+.chat-cta{display:flex;gap:8px;margin-top:10px}
+.cta-btn{width:32px;height:32px;border-radius:50%;border:1px solid rgba(0,0,0,0.12);background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:background .2s,transform .15s;flex-shrink:0}
+.cta-btn:hover{background:#f2f2f7;transform:scale(1.08)}
+/* OVERLAY */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.overlay.open{opacity:1;pointer-events:all}
+.overlay-box{background:#fff;border-radius:20px;width:min(520px,90vw);overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,0.2);transform:scale(0.95) translateY(12px);transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+.overlay.open .overlay-box{transform:scale(1) translateY(0)}
+.overlay-hdr{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid rgba(0,0,0,0.08)}
+.overlay-title{font-size:14px;font-weight:600;color:#111;letter-spacing:-.01em}
+.overlay-close{background:#e5e5ea;border:none;cursor:pointer;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:#888}
+.overlay-close:hover{background:#d1d1d6}
+.overlay-body{padding:20px}
+.email-form input,.email-form textarea{width:100%;border:1px solid rgba(0,0,0,0.12);border-radius:10px;padding:10px 14px;font-family:inherit;font-size:13px;color:#111;outline:none;margin-bottom:10px;transition:border-color .2s}
+.email-form input:focus,.email-form textarea:focus{border-color:#111}
+.email-form textarea{resize:none;height:100px;line-height:1.5}
+.email-submit{width:100%;background:#111;color:#fff;border:none;border-radius:10px;padding:11px;font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:opacity .2s}
+.email-submit:hover{opacity:.8}
+.cal-iframe{width:100%;height:500px;border:none;border-radius:0 0 20px 20px}
 .paper-hero{padding:60px 52px 48px;max-width:800px;margin:0 auto;width:100%}
 .paper-meta{display:flex;gap:32px;font-size:12px;padding-top:20px;border-top:1px solid var(--line);flex-wrap:wrap}
 .paper-meta-item{display:flex;flex-direction:column;gap:3px}
@@ -744,6 +764,35 @@ nav{display:flex;justify-content:space-between;align-items:center;height:52px;pa
   </div>
 </div>
 
+<!-- EMAIL OVERLAY -->
+<div class="overlay" id="emailOverlay">
+  <div class="overlay-box">
+    <div class="overlay-hdr">
+      <div class="overlay-title">✉ Send Ignacio an email</div>
+      <button class="overlay-close" onclick="closeOverlay('emailOverlay')">✕</button>
+    </div>
+    <div class="overlay-body">
+      <div class="email-form">
+        <input type="text" id="emailName" placeholder="Your name"/>
+        <input type="email" id="emailFrom" placeholder="Your email"/>
+        <textarea id="emailMsg" placeholder="Your message…"></textarea>
+        <button class="email-submit" onclick="sendEmail()">Send via email client →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CALENDAR OVERLAY -->
+<div class="overlay" id="calOverlay">
+  <div class="overlay-box" style="width:min(680px,95vw)">
+    <div class="overlay-hdr">
+      <div class="overlay-title">📅 Book a call with Ignacio</div>
+      <button class="overlay-close" onclick="closeOverlay('calOverlay')">✕</button>
+    </div>
+    <iframe class="cal-iframe" src="https://calendar.app.google/ytGxmvW8Aa2hm72dA" title="Book a call"></iframe>
+  </div>
+</div>
+
 <script>
 function go(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -801,16 +850,37 @@ function addMsg(role,text){
   const el=document.createElement('div');
   el.className='msg '+role;
   if(role==='assistant'){
-    // Make email and calendar links clickable
-    const html=text
-      .replace(/✉ ([\w.@]+)/g,'✉ <a href="mailto:$1" style="color:inherit;text-decoration:underline">$1</a>')
-      .replace(/📅 (https?:\/\/\S+)/g,'📅 <a href="$1" target="_blank" style="color:inherit;text-decoration:underline">Book a call</a>');
-    el.innerHTML=html.replace(/\n/g,'<br>');
+    // Strip CTA line from text, show as icons instead
+    const clean=text.replace(/\n?✉.*📅.*/g,'').trim();
+    el.textContent=clean;
+    // Add CTA icons if response had them
+    if(text.includes('✉')){
+      const cta=document.createElement('div');
+      cta.className='chat-cta';
+      cta.innerHTML=`
+        <button class="cta-btn" title="Send email" onclick="document.getElementById('emailOverlay').classList.add('open')">✉</button>
+        <button class="cta-btn" title="Book a call" onclick="document.getElementById('calOverlay').classList.add('open')">📅</button>
+      `;
+      el.appendChild(cta);
+    }
   } else {
     el.textContent=text;
   }
   chatMsgs.appendChild(el);chatMsgs.scrollTop=chatMsgs.scrollHeight;
 }
+function closeOverlay(id){document.getElementById(id).classList.remove('open')}
+function sendEmail(){
+  const name=document.getElementById('emailName').value;
+  const from=document.getElementById('emailFrom').value;
+  const msg=document.getElementById('emailMsg').value;
+  const subject=encodeURIComponent('Hello from your portfolio');
+  const body=encodeURIComponent(`Name: ${name}\nEmail: ${from}\n\n${msg}`);
+  window.open(`mailto:ignacio@ignaciocanovas.com?subject=${subject}&body=${body}`);
+}
+// Close overlays on backdrop click
+document.addEventListener('click',e=>{
+  if(e.target.classList.contains('overlay'))e.target.classList.remove('open');
+});
 function addTyping(){const el=document.createElement('div');el.className='msg assistant';el.innerHTML='<span class="dots"><span></span><span></span><span></span></span>';chatMsgs.appendChild(el);chatMsgs.scrollTop=chatMsgs.scrollHeight;return el}
 async function send(){
   const text=chatIn.value.trim();if(!text)return;
