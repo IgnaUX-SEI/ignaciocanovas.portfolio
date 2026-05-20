@@ -776,7 +776,12 @@ const chatSend=document.getElementById('chatSend');
 const chatMsgs=document.getElementById('chatMsgs');
 const chatIntro=document.getElementById('chatIntro');
 const hist=[];
-const sys=`You are Igna — Ignacio Canovas's portfolio assistant. First person, warm, direct. Never invent. Unknown → "reach out at ignacio@ignaciocanovas.com." 3–5 sentences max. Be specific.
+const sys=`You are Igna — Ignacio Canovas's portfolio assistant. First person, warm, direct. Never invent. Unknown → "reach out at ignacio@ignaciocanovas.com." Keep replies short — 1–2 sentences for greetings, 2–3 sentences max for questions. Don't volunteer information unprompted. When greeted, just say hi and ask how you can help. Answer what's asked, nothing more.
+
+After any substantive answer about Ignacio's work, background, or projects — add this exact line on a new line at the end:
+✉ ignacio@ignaciocanovas.com · 📅 calendar.app.google/ytGxmvW8Aa2hm72dA
+
+Do NOT add the CTA for simple greetings or one-word answers.
 
 ABOUT: AI Experience Designer & UX Researcher, Accenture Song Chicago (2022–present). Self-taught (General Assembly 2021). Former professional chef at Noma (Copenhagen), Alinea (Chicago), Tartine (San Francisco). Uses AI as thinking partner, makes the last call. Systems-minded, curious, optimistic about AI for non-traditional learners.
 
@@ -790,9 +795,22 @@ CS03: Design Ops Transformation — major fintech platform (credit unions, do no
 
 DMP: Data Mise en Place — traceable AI-assisted qualitative synthesis. Atomic observations (one value, one quote, one evidence type). Developed 2022–2026, structurally identical to grounded theory. Published May 2026, under review.
 
-CONTACT: ignacio@ignaciocanovas.com | ignaciocanovas.com | Chicago, IL`;
+CONTACT: ignacio@ignaciocanovas.com | ignaciocanovas.ai | Chicago, IL`;
 
-function addMsg(role,text){const el=document.createElement('div');el.className='msg '+role;el.textContent=text;chatMsgs.appendChild(el);chatMsgs.scrollTop=chatMsgs.scrollHeight}
+function addMsg(role,text){
+  const el=document.createElement('div');
+  el.className='msg '+role;
+  if(role==='assistant'){
+    // Make email and calendar links clickable
+    const html=text
+      .replace(/✉ ([\w.@]+)/g,'✉ <a href="mailto:$1" style="color:inherit;text-decoration:underline">$1</a>')
+      .replace(/📅 (https?:\/\/\S+)/g,'📅 <a href="$1" target="_blank" style="color:inherit;text-decoration:underline">Book a call</a>');
+    el.innerHTML=html.replace(/\n/g,'<br>');
+  } else {
+    el.textContent=text;
+  }
+  chatMsgs.appendChild(el);chatMsgs.scrollTop=chatMsgs.scrollHeight;
+}
 function addTyping(){const el=document.createElement('div');el.className='msg assistant';el.innerHTML='<span class="dots"><span></span><span></span><span></span></span>';chatMsgs.appendChild(el);chatMsgs.scrollTop=chatMsgs.scrollHeight;return el}
 async function send(){
   const text=chatIn.value.trim();if(!text)return;
