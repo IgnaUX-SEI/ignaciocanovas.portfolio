@@ -748,8 +748,8 @@ function go(id){
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
   setTimeout(()=>{
-    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});},{threshold:0.08});
-    document.querySelectorAll('#'+id+' .section').forEach(s=>{s.classList.remove('visible');obs.observe(s)});
+    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});},{threshold:0.05});
+    document.querySelectorAll('#'+id+' .section, #'+id+' .psec').forEach(s=>{s.classList.remove('visible');obs.observe(s)});
   },60);
 }
 function scrollTo02(id){document.getElementById(id)&&document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
