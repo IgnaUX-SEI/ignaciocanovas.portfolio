@@ -1043,11 +1043,18 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
       <button class="overlay-close" onclick="closeOverlay('emailOverlay')">✕</button>
     </div>
     <div class="overlay-body">
-      <div class="email-form">
+      <div class="email-form" id="emailForm">
         <input type="text" id="emailName" placeholder="Your name"/>
         <input type="email" id="emailFrom" placeholder="Your email"/>
         <textarea id="emailMsg" placeholder="Your message…"></textarea>
         <button class="email-submit" onclick="sendEmail()">Send message →</button>
+      </div>
+      <div id="emailSuccess" style="display:none;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;min-height:180px">
+        <div id="planeWrap" style="font-size:48px;transition:transform 1s cubic-bezier(.4,0,.2,1),opacity .5s;transform:translate(0,0) rotate(0deg);opacity:1">✈️</div>
+        <div id="sentMsg" style="margin-top:20px;text-align:center;opacity:0;transition:opacity .4s">
+          <div style="font-size:15px;font-weight:600;color:#111;margin-bottom:4px">Message sent!</div>
+          <div style="font-size:13px;color:#888">Ignacio will get back to you soon.</div>
+        </div>
       </div>
     </div>
   </div>
@@ -1175,11 +1182,40 @@ async function sendEmail(){
       body:JSON.stringify({name,email:from,message:msg})
     });
     if(res.ok){
-      btn.textContent='Sent ✓';
       document.getElementById('emailName').value='';
       document.getElementById('emailFrom').value='';
       document.getElementById('emailMsg').value='';
-      setTimeout(()=>{closeOverlay('emailOverlay');btn.textContent='Send message →';btn.disabled=false;},1800);
+      // collapse form, show success
+      const form=document.getElementById('emailForm');
+      form.style.transition='opacity .3s,max-height .4s';
+      form.style.opacity='0';
+      form.style.maxHeight='0';
+      form.style.overflow='hidden';
+      const success=document.getElementById('emailSuccess');
+      success.style.display='flex';
+      // fly the plane
+      setTimeout(()=>{
+        const plane=document.getElementById('planeWrap');
+        plane.style.transform='translate(120px,-80px) rotate(-30deg)';
+        plane.style.opacity='0';
+        setTimeout(()=>{
+          document.getElementById('sentMsg').style.opacity='1';
+          setTimeout(()=>{
+            const overlay=document.getElementById('emailOverlay');
+            overlay.style.transition='opacity .5s';
+            overlay.style.opacity='0';
+            setTimeout(()=>{
+              closeOverlay('emailOverlay');
+              overlay.style.opacity='';
+              form.style.opacity='';form.style.maxHeight='';form.style.overflow='';
+              success.style.display='none';
+              plane.style.transform='translate(0,0) rotate(0deg)';plane.style.opacity='1';
+              document.getElementById('sentMsg').style.opacity='0';
+              btn.textContent='Send message →';btn.disabled=false;
+            },600);
+          },1600);
+        },800);
+      },350);
     } else {
       btn.textContent='Try again';btn.disabled=false;
     }
