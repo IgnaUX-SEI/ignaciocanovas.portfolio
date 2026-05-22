@@ -159,7 +159,10 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 .chat-msgs:not(:empty){padding:14px 15px}
 .msg{font-size:13px;font-weight:400;line-height:1.6;padding:9px 12px;max-width:90%;border-radius:14px}
 .msg.user{background:#111;color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
-.msg.assistant{background:#f0f0f0;color:#111;align-self:flex-start;border-bottom-left-radius:3px}
+.msg.assistant{background:#f0f0f0;color:#111;align-self:flex-start;border-bottom-left-radius:3px;font-size:13px;line-height:1.6}
+.msg.assistant .section-block{padding:10px 0;border-bottom:1px solid rgba(0,0,0,.08)}
+.msg.assistant .section-block:first-child{padding-top:0}
+.msg.assistant .section-block:last-child{border-bottom:none;padding-bottom:0}
 .msg.assistant .dots span{display:inline-block;width:4px;height:4px;background:#888;border-radius:50%;margin-right:3px;animation:blink 1.2s infinite ease-in-out}
 .msg.assistant .dots span:nth-child(2){animation-delay:.2s}.msg.assistant .dots span:nth-child(3){animation-delay:.4s}
 .msg-followups{display:flex;flex-direction:column;gap:5px;margin-top:10px;padding-top:8px;border-top:1px solid rgba(0,0,0,.08)}
@@ -1332,13 +1335,34 @@ function addMsgWithFollowups(text){
   const followups=extractFollowups(text);
   const idx=text.indexOf('Explore further');
   const rawText=idx!==-1?text.slice(0,idx).trim():text.trim();
-  const cleanText=rawText
-    .replace(/\*\*(.*?)\*\*/g,'$1')
-    .replace(/\*(.*?)\*/g,'$1')
-    .replace(/^[*\-•]\s+/gm,'• ');
+
+  // Convert markdown to clean HTML sections
+  const blocks=rawText.split(/\n{2,}/);
+  const html=blocks.map((block,i)=>{
+    let inner='';
+    // Bold header + content
+    if(/^\*\*[^*]+\*\*/.test(block)){
+      inner=block
+        .replace(/^\*\*([^*]+)\*\*/,'<div style="font-weight:700;font-size:12px;margin-bottom:5px;color:#111">$1</div>')
+        .replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')
+        .replace(/\n/g,'<br>');
+    } else if(/^[*\-•]\s/.test(block)){
+      const items=block.split('\n').filter(l=>l.trim());
+      inner='<div style="display:flex;flex-direction:column;gap:3px">'+
+        items.map(l=>'<div style="padding-left:12px;position:relative"><span style="position:absolute;left:0;color:#888">·</span>'+
+          l.replace(/^[*\-•]\s+/,'').replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>')+'</div>').join('')+'</div>';
+    } else {
+      inner=block.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');
+    }
+    const isLast=i===blocks.length-1;
+    return `<div class="section-block" style="padding:${i===0?'0':'10px'} 0 10px;${isLast?'border-bottom:none;padding-bottom:0':'border-bottom:1px solid rgba(0,0,0,.08)'}">${inner}</div>`;
+  }).join('');
+
   const div=document.createElement('div');
   div.className='msg assistant';
-  div.innerHTML=cleanText.replace(/\n/g,'<br>');
+  div.style.lineHeight='1.6';
+  div.innerHTML=html;
+
   if(followups.length){
     const fp=document.createElement('div');
     fp.className='msg-followups';
