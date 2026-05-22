@@ -1047,7 +1047,7 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
         <input type="text" id="emailName" placeholder="Your name"/>
         <input type="email" id="emailFrom" placeholder="Your email"/>
         <textarea id="emailMsg" placeholder="Your message…"></textarea>
-        <button class="email-submit" onclick="sendEmail()">Send via email client →</button>
+        <button class="email-submit" onclick="sendEmail()">Send message →</button>
       </div>
     </div>
   </div>
@@ -1161,13 +1161,31 @@ function addMsg(role,text){
   chatMsgs.appendChild(el);chatMsgs.scrollTop=chatMsgs.scrollHeight;
 }
 function closeOverlay(id){document.getElementById(id).classList.remove('open')}
-function sendEmail(){
-  const name=document.getElementById('emailName').value;
-  const from=document.getElementById('emailFrom').value;
-  const msg=document.getElementById('emailMsg').value;
-  const subject=encodeURIComponent('Hello from your portfolio');
-  const body=encodeURIComponent(`Name: ${name}\nEmail: ${from}\n\n${msg}`);
-  window.open(`mailto:ignacio@ignaciocanovas.com?subject=${subject}&body=${body}`);
+async function sendEmail(){
+  const name=document.getElementById('emailName').value.trim();
+  const from=document.getElementById('emailFrom').value.trim();
+  const msg=document.getElementById('emailMsg').value.trim();
+  if(!name||!from||!msg){alert('Please fill in all fields.');return;}
+  const btn=document.querySelector('.email-submit');
+  btn.textContent='Sending...';btn.disabled=true;
+  try{
+    const res=await fetch('https://formspree.io/f/mojbdzoj',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({name,email:from,message:msg})
+    });
+    if(res.ok){
+      btn.textContent='Sent ✓';
+      document.getElementById('emailName').value='';
+      document.getElementById('emailFrom').value='';
+      document.getElementById('emailMsg').value='';
+      setTimeout(()=>{closeOverlay('emailOverlay');btn.textContent='Send message →';btn.disabled=false;},1800);
+    } else {
+      btn.textContent='Try again';btn.disabled=false;
+    }
+  } catch(e){
+    btn.textContent='Try again';btn.disabled=false;
+  }
 }
 // Close overlays on backdrop click
 document.addEventListener('click',e=>{
