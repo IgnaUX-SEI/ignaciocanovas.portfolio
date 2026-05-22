@@ -140,15 +140,15 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 .replay-pill{position:fixed;z-index:400;background:#111;color:#fff;font-size:11px;font-weight:600;letter-spacing:.04em;padding:6px 12px;border-radius:999px;cursor:pointer;pointer-events:all;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,0.2);opacity:0;transition:opacity .2s;transform:translateY(-4px);font-family:inherit}
 .replay-pill.show{opacity:1;transform:translateY(0)}
 .bubble-icon{color:#fff;font-size:16px;line-height:1}
-.chat-panel{position:fixed;right:28px;bottom:128px;width:360px;background:rgba(255,255,255,.94);backdrop-filter:blur(24px);border:1px solid rgba(0,0,0,.1);border-radius:20px;z-index:300;overflow:hidden;transform-origin:bottom right;transition:opacity .25s,transform .25s;box-shadow:0 16px 48px rgba(0,0,0,.14)}
+.chat-panel{position:fixed;right:28px;bottom:96px;width:360px;background:rgba(255,255,255,.94);backdrop-filter:blur(24px);border:1px solid rgba(0,0,0,.1);border-radius:20px;z-index:300;overflow:hidden;transform-origin:bottom right;transition:opacity .25s,transform .25s;box-shadow:0 16px 48px rgba(0,0,0,.14)}
 .chat-panel.hidden{opacity:0;transform:scale(0.94) translateY(8px);pointer-events:none}
 .chat-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 15px 11px}
 .chat-id{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:600;letter-spacing:-.015em;color:#111}
 .chat-spark{width:20px;height:20px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff}
 .chat-close{background:#e5e5ea;border:none;cursor:pointer;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:#888}
-.chat-intro{padding:14px 16px 16px;font-size:12.5px;font-weight:400;line-height:1.5;color:#555;border-bottom:1px solid rgba(0,0,0,.08)}
-.chat-msgs{padding:0;max-height:280px;overflow-y:auto;display:flex;flex-direction:column;gap:7px}
-.chat-msgs:not(:empty){padding:11px 15px}
+.chat-intro{padding:14px 16px 18px;font-size:12.5px;font-weight:400;line-height:1.5;color:#555;border-bottom:1px solid rgba(0,0,0,.08)}
+.chat-msgs{padding:0;max-height:320px;overflow-y:auto;display:flex;flex-direction:column;gap:7px}
+.chat-msgs:not(:empty){padding:14px 15px}
 .msg{font-size:13px;font-weight:400;line-height:1.45;padding:8px 11px;max-width:88%;border-radius:14px}
 .msg.user{background:#111;color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
 .msg.assistant{background:#e9e9eb;color:#111;align-self:flex-start;border-bottom-left-radius:3px}
@@ -1043,7 +1043,7 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
   <div class="chat-msgs" id="chatMsgs"></div>
   <div class="chat-input-row">
     <input id="chatIn" type="text" placeholder="Ask me about Ignacio's work…"/>
-    <button id="chatWand" onclick="wandRefineChat()" title="Refine with AI" style="background:none;border:none;cursor:pointer;font-size:14px;color:#bbb;padding:0 4px;transition:color .2s;flex-shrink:0" onmouseenter="this.style.color='#111'" onmouseleave="this.style.color='#bbb'">✦</button>
+    <button id="chatWand" onclick="wandRefineChat()" title="Refine with AI" style="background:none;border:1.5px solid #ddd;border-radius:999px;cursor:pointer;font-size:13px;color:#888;padding:4px 10px;transition:all .2s;flex-shrink:0;font-family:inherit;white-space:nowrap" onmouseenter="this.style.borderColor='#111';this.style.color='#111'" onmouseleave="this.style.borderColor='#ddd';this.style.color='#888'">✦ Refine</button>
     <button class="chat-send" id="chatSend">↑</button>
   </div>
 </div>
@@ -1061,7 +1061,7 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
         <input type="email" id="emailFrom" placeholder="Your email"/>
         <div style="position:relative">
           <textarea id="emailMsg" placeholder="Your message…" style="padding-right:36px"></textarea>
-          <button onclick="wandRefineEmail()" title="Refine with AI" style="position:absolute;bottom:10px;right:10px;background:none;border:none;cursor:pointer;font-size:15px;color:#ccc;padding:0;transition:color .2s;line-height:1" onmouseenter="this.style.color='#111'" onmouseleave="this.style.color='#ccc'">✦</button>
+          <button onclick="wandRefineEmail()" title="Refine with AI" style="position:absolute;bottom:10px;right:8px;background:#fff;border:1.5px solid #ddd;border-radius:999px;cursor:pointer;font-size:11px;color:#888;padding:3px 9px;transition:all .2s;font-family:inherit;white-space:nowrap" onmouseenter="this.style.borderColor='#111';this.style.color='#111'" onmouseleave="this.style.borderColor='#ddd';this.style.color='#888'">✦ Refine</button>
         </div>
         <button class="email-submit" onclick="sendEmail()">Send message →</button>
       </div>
