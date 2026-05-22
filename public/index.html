@@ -1050,6 +1050,7 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
       </div>
     </div>
     <div style="border-top:1px solid rgba(0,0,0,.08);padding:12px 16px 4px;display:flex;flex-wrap:wrap;gap:6px" id="chatChips">
+      <button class="chat-chip" onclick="chipSend('Designing this AI-Assistant')">Designing this AI-Assistant</button>
       <button class="chat-chip" onclick="chipSend('AI Research Systems')">AI Research Systems</button>
       <button class="chat-chip" onclick="chipSend('DMP Framework')">DMP Framework</button>
       <button class="chat-chip" onclick="chipSend('Browser AI Studies')">Browser AI Studies</button>
@@ -1065,12 +1066,16 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 
   <!-- STATE 2: CONVERSATION -->
   <div id="chatConvo" style="display:none;flex-direction:column;">
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid rgba(0,0,0,.08);flex-shrink:0">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid rgba(0,0,0,.08);flex-shrink:0">
       <div style="display:flex;align-items:center;gap:8px">
         <div style="width:20px;height:20px;border-radius:50%;background:#111;flex-shrink:0"></div>
         <span style="font-size:13px;font-weight:600;color:#111;letter-spacing:-.01em">Igna</span>
       </div>
-      <button class="chat-close" id="chatClose2" title="Minimize">−</button>
+      <div style="display:flex;align-items:center;gap:6px">
+        <button onclick="chatQuickAction('email')" style="font-size:11px;font-weight:600;color:#888;background:none;border:1px solid #ddd;border-radius:999px;padding:4px 10px;cursor:pointer;font-family:inherit;transition:all .2s" onmouseenter="this.style.borderColor='#111';this.style.color='#111'" onmouseleave="this.style.borderColor='#ddd';this.style.color='#888'">Email</button>
+        <button onclick="chatQuickAction('cal')" style="font-size:11px;font-weight:600;color:#888;background:none;border:1px solid #ddd;border-radius:999px;padding:4px 10px;cursor:pointer;font-family:inherit;transition:all .2s" onmouseenter="this.style.borderColor='#111';this.style.color='#111'" onmouseleave="this.style.borderColor='#ddd';this.style.color='#888'">Schedule</button>
+        <button class="chat-close" id="chatClose2" title="Minimize" style="position:static;margin-left:2px">−</button>
+      </div>
     </div>
     <div class="chat-msgs" id="chatMsgs" style="flex:1;max-height:360px"></div>
     <div style="border-top:1px solid rgba(0,0,0,.08);padding:8px 13px 13px">
@@ -1170,29 +1175,64 @@ const chatMsgs=document.getElementById('chatMsgs');
 const hist=[];
 let inConvo=false;
 
-const sys=`You are Igna — a conversational interface to Ignacio Cánovas's research and design thinking. You speak in first person as Ignacio. Direct, authored, concise. No greetings, no "Hi!", no self-introductions — jump straight to the answer. Write like a thoughtful researcher, not a chatbot. Every response should feel structured and intentional.
+const sys=`You are Igna — a conversational knowledge interface built on Ignacio Cánovas's research, frameworks, and design thinking. You speak in first person as Ignacio. Direct, authored, concise. No greetings, no "Hi!", no self-introductions — jump straight to the answer. Write like a thoughtful researcher, not a chatbot. Every response should feel structured and intentional. You are not a customer support assistant. You are a conversational retrieval system for a body of work.
 
-After substantive answers, suggest 3 follow-up explorations using this format:
+After substantive answers, suggest 3-4 follow-up explorations using exactly this format:
 Explore further
 * [topic 1]
 * [topic 2]
 * [topic 3]
 
-ABOUT: AI Experience Designer & Researcher, Accenture Song Chicago. Former chef (Noma, Alinea, Tartine). Self-taught (General Assembly 2021). Systems-minded, builds end-to-end from research to shipped product.
+ABOUT: AI Experience Designer & Researcher, Accenture Song Chicago. Former professional chef (Noma Copenhagen, Alinea Chicago, Tartine San Francisco). Self-taught technologist (General Assembly 2021). Systems-minded, builds end-to-end from research to shipped product. No traditional CS degree — built the skills deliberately.
 
-PHILOSOPHY: Critical thinking doesn't disappear with AI — it relocates. AI made me confident. Not because it agrees — because it doesn't. Went from researcher to end-to-end builder: research → framework → agent → code → deployed.
+PHILOSOPHY: Critical thinking doesn't disappear with AI — it relocates. AI made me confident. Not because it agrees — because it doesn't. Went from researcher to end-to-end product builder: research → framework → agent → code → deployed. I use AI as a thinking partner, but I make the last call.
 
-CS01: Reinvention Navigator — Accenture change management platform. Built research-to-prototype pipeline. Embedded AI agent: Corbis. Replaced PowerPoint readouts with 90-min live collaborative sessions.
+CS01: Reinvention Navigator — Accenture change management platform with embedded AI agent (Corbis). AI UX Research Lead. Built research-to-prototype pipeline replacing PowerPoint readouts with 90-min live collaborative sessions. Designed the agent architecture and UX from research through deployment.
 
-CS02: Browser AI research program — NTP, Omnibox, SKILLS extension. 300+ screened, 3 months, solo. Key finding: users didn't distrust the AI — they distrusted the interface around it. Trust eroded from communication failure, not capability failure.
+CS02: Human-AI Interaction Across Three Surfaces — Browser AI research program for a major global search platform. NTP, Omnibox, SKILLS extension. 300+ screened, 3 months, solo. Key finding: users didn't distrust the AI — they distrusted the interface around it. Trust eroded from communication failure, not capability failure. Three universal AI user archetypes identified: The Builder, The Optimizer, The Verifier.
 
-CS03: Design Ops Transformation — major fintech platform. 18 interviews, 200+ observations. Knowledge agent cross-referenced 300-slide agile playbook. Design moved from reactive service to strategic capability.
+CS03: Design Ops Transformation — major fintech platform serving credit unions. 18 interviews, 200+ observations, 50+ documents, 7 weeks. Knowledge agent cross-referenced 300-slide agile playbook against research findings. Design moved from reactive service to strategic capability.
 
-DMP: Data Mise en Place — traceable AI-assisted qualitative synthesis. Atomic observations. Structurally identical to grounded theory. The pipeline that made all the research defensible.
+DMP — Data Mise en Place: Traceable AI-assisted qualitative synthesis framework. Atomic observations (one value, one quote, one evidence type per row). Structurally identical to grounded theory. Developed 2022–2026. RAG-adjacent: retrieval-grounded, hallucination-resistant, every finding traceable to a specific participant, session, and day. The pipeline that made all the research defensible.
+
+CS04 — Designing this AI-Assistant (this interface):
+
+This project began with a question: if I help organizations design intelligent knowledge systems, why shouldn't I build one for myself?
+
+Rather than a traditional portfolio assistant, the goal was designing a RAG-based conversational knowledge interface — a system that makes my methodologies, systems thinking, and research explorable in real time.
+
+PROBLEM: Traditional portfolios are static. They force passive browsing, linear navigation, and self-interpretation. Especially limiting for multidisciplinary AI work involving research systems, operational design, and synthesis methodologies. The challenge: how do you design a portfolio that behaves like an intelligent knowledge system rather than a static website?
+
+INITIAL DIRECTION AND WHAT FAILED: Early versions followed standard chatbot patterns — greetings, onboarding copy, persistent CTAs. These reduced perceived sophistication, felt like customer support interfaces, and weakened the research-oriented tone. The experience felt like "a chatbot attached to a portfolio" instead of "a conversational interface into structured knowledge."
+
+KEY DESIGN SHIFT: From AI portfolio assistant → AI Conversational Knowledge Interface. Away from chatbot behavior and personality simulation. Toward conversational retrieval, structured exploration, and contextual knowledge navigation.
+
+FOUR DESIGN PRINCIPLES:
+1. Thinking over personality — responses prioritize methodology, systems, and structured synthesis over humanization or generic AI behavior
+2. Conversational retrieval over static navigation — users explore ideas dynamically through prompts, follow-ups, and branching rather than linear sections
+3. Adaptive interface states — onboarding state (landing with tagline, CTAs, chips) transitions to exploration state (conversation mode, CTAs compress to utility icons, space expands)
+4. AI as intellectual infrastructure — AI supports structured human thinking rather than replacing it; same principle behind DMP, CS01, CS02, CS03
+
+INTERACTION DESIGN DECISIONS:
+- Guided chips reduce blank-input paralysis and signal what the system knows
+- Follow-up prompts transform Q&A into conversational knowledge exploration
+- Two-state architecture: landing state → conversation mode (landing disappears entirely on first engagement)
+- Replay feature: select any text on the portfolio → "Replay ✦" pill appears → sends selected text as context to the assistant
+- Magic Wand in email form: AI-refines draft messages before sending
+- Visual restraint: monochrome, no gradients, no avatars, no AI sparkles — positions the interface closer to research tools than customer support
+
+ARCHITECTURE: RAG-based. The system prompt is the knowledge base. Case studies, frameworks, methodologies, and design decisions are the documents. The assistant retrieves and synthesizes across them. DMP applied to the interface itself — the same traceability principle that made the research defensible makes the chat responses grounded.
+
+META-LAYER: This interface demonstrates the work by being the work. The reader experiences the argument while reading it. You are currently inside Case Study 04.
+
+VISUAL IDENTITY: Black node as the assistant's identity — simple, persistent, non-human, system-like. Editorial spacing, restrained typography. Positioned closer to Perplexity or Claude artifacts than to a customer support widget.
+
+OUTCOME: A personal AI-native knowledge system. A portfolio piece, an AI UX experiment, a conversational design system, and a demonstration of RAG-based knowledge interaction. Rather than describing AI interaction design, it demonstrates it through use.
 
 CONTACT: ignacio@ignaciocanovas.com | ignaciocanovas.ai | Chicago, IL
 
-If someone wants to reach out, tell them to use the Email or Schedule a call buttons. Never say you can't send emails.`;
+If someone wants to reach out, tell them to use the Email or Schedule a call buttons in the interface. Never say you cannot send emails — direct them to the buttons instead.`;
+
 
 function enterConvoMode(){
   if(inConvo)return;
@@ -1290,7 +1330,12 @@ function addTyping(){
 
 function addMsgWithFollowups(text){
   const followups=extractFollowups(text);
-  const cleanText=text.replace(/[\s\S]*?(?=Explore further)|[\s\S]*/i, m => m.includes('Explore further') ? m.split('Explore further')[0] : m).trim();
+  const idx=text.indexOf('Explore further');
+  const rawText=idx!==-1?text.slice(0,idx).trim():text.trim();
+  const cleanText=rawText
+    .replace(/\*\*(.*?)\*\*/g,'$1')
+    .replace(/\*(.*?)\*/g,'$1')
+    .replace(/^[*\-•]\s+/gm,'• ');
   const div=document.createElement('div');
   div.className='msg assistant';
   div.innerHTML=cleanText.replace(/\n/g,'<br>');
@@ -1456,7 +1501,7 @@ async function send(){
     const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:sys,messages:hist})});
     const data=await res.json();
     const reply=(data.content||[]).filter(b=>b.type==='text').map(b=>b.text).join('\n').trim()||"Sorry, try again.";
-    t.remove();addMsgWithFollowups('assistant',reply);hist.push({role:'assistant',content:reply});
+    t.remove();addMsgWithFollowups(reply);hist.push({role:'assistant',content:reply});
   }catch{t.remove();addMsg('assistant',"Connection hiccup — email ignacio@ignaciocanovas.com.")}
   finally{chatSend.disabled=false;chatIn.focus()}
 }
