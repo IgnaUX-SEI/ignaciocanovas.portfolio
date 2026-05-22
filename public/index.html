@@ -137,15 +137,17 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 /* CHAT */
 .chat-bubble{position:fixed;right:28px;bottom:68px;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;z-index:300;background:#111;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:transform .2s}
 .chat-bubble:hover{transform:scale(1.08)}
+.replay-pill{position:fixed;z-index:400;background:#111;color:#fff;font-size:11px;font-weight:600;letter-spacing:.04em;padding:6px 12px;border-radius:999px;cursor:pointer;pointer-events:all;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,0.2);opacity:0;transition:opacity .2s;transform:translateY(-4px);font-family:inherit}
+.replay-pill.show{opacity:1;transform:translateY(0)}
 .bubble-icon{color:#fff;font-size:16px;line-height:1}
-.chat-panel{position:fixed;right:28px;bottom:128px;width:310px;background:rgba(255,255,255,.94);backdrop-filter:blur(24px);border:1px solid rgba(0,0,0,.1);border-radius:20px;z-index:300;overflow:hidden;transform-origin:bottom right;transition:opacity .25s,transform .25s;box-shadow:0 16px 48px rgba(0,0,0,.14)}
+.chat-panel{position:fixed;right:28px;bottom:128px;width:360px;background:rgba(255,255,255,.94);backdrop-filter:blur(24px);border:1px solid rgba(0,0,0,.1);border-radius:20px;z-index:300;overflow:hidden;transform-origin:bottom right;transition:opacity .25s,transform .25s;box-shadow:0 16px 48px rgba(0,0,0,.14)}
 .chat-panel.hidden{opacity:0;transform:scale(0.94) translateY(8px);pointer-events:none}
 .chat-hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 15px 11px}
 .chat-id{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:600;letter-spacing:-.015em;color:#111}
 .chat-spark{width:20px;height:20px;border-radius:50%;background:#111;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff}
 .chat-close{background:#e5e5ea;border:none;cursor:pointer;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:#888}
-.chat-intro{padding:0 15px 13px;font-size:12.5px;font-weight:400;line-height:1.5;color:#555;border-bottom:1px solid rgba(0,0,0,.08)}
-.chat-msgs{padding:0;max-height:230px;overflow-y:auto;display:flex;flex-direction:column;gap:7px}
+.chat-intro{padding:14px 16px 16px;font-size:12.5px;font-weight:400;line-height:1.5;color:#555;border-bottom:1px solid rgba(0,0,0,.08)}
+.chat-msgs{padding:0;max-height:280px;overflow-y:auto;display:flex;flex-direction:column;gap:7px}
 .chat-msgs:not(:empty){padding:11px 15px}
 .msg{font-size:13px;font-weight:400;line-height:1.45;padding:8px 11px;max-width:88%;border-radius:14px}
 .msg.user{background:#111;color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
@@ -851,6 +853,9 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
     <div class="paper-label">Featured Paper · Version 2.0 — May 2026</div>
     <h1 class="cs-title">Data Mise en Place</h1>
     <p class="cs-sub">A framework for traceable AI synthesis in qualitative research — so findings can be defended, not just delivered.</p>
+    <div class="tags" style="margin-top:20px">
+      <span class="tag">Retrieval-Augmented Synthesis</span><span class="tag">AI Architecture</span><span class="tag">Human-in-the-Loop</span><span class="tag">Traceability</span><span class="tag">AI-Assisted Synthesis</span><span class="tag">Prompt Engineering</span>
+    </div>
     <div class="paper-meta">
       <div class="paper-meta-item"><span class="paper-meta-label">Author</span><span class="paper-meta-value">Ignacio Cánovas</span></div>
       <div class="paper-meta-item"><span class="paper-meta-label">Status</span><span class="paper-meta-value">Under review for publication</span></div>
@@ -1021,16 +1026,24 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 
 
 <button class="chat-bubble" id="chatBubble"><span class="bubble-icon">✦</span></button>
+<div class="replay-pill" id="replayPill">Replay ✦</div>
 
 <div class="chat-panel hidden" id="chatPanel">
   <div class="chat-hdr">
     <div class="chat-id"><span class="chat-spark">✦</span> Hi, I am Igna.</div>
     <button class="chat-close" id="chatClose">✕</button>
   </div>
-  <div class="chat-intro" id="chatIntro">Ask me about my work, my framework, or my background.</div>
+  <div class="chat-intro" id="chatIntro">
+    <div style="margin-bottom:12px;color:#444;font-size:12.5px;line-height:1.5">Ask me about Ignacio's work — or jump straight to:</div>
+    <div style="display:flex;gap:8px">
+      <button id="btnEmail" onclick="chatQuickAction('email')" style="flex:1;border:2px solid #111;border-radius:999px;padding:9px 12px;font-size:12px;font-weight:700;background:#fff;color:#111;cursor:pointer;transition:background .2s,color .2s;font-family:inherit;letter-spacing:.01em">Email</button>
+      <button id="btnCal" onclick="chatQuickAction('cal')" style="flex:1;border:2px solid #111;border-radius:999px;padding:9px 12px;font-size:12px;font-weight:700;background:#fff;color:#111;cursor:pointer;transition:background .2s,color .2s;font-family:inherit;letter-spacing:.01em">Schedule a call</button>
+    </div>
+  </div>
   <div class="chat-msgs" id="chatMsgs"></div>
   <div class="chat-input-row">
     <input id="chatIn" type="text" placeholder="Ask me about Ignacio's work…"/>
+    <button id="chatWand" onclick="wandRefineChat()" title="Refine with AI" style="background:none;border:none;cursor:pointer;font-size:14px;color:#bbb;padding:0 4px;transition:color .2s;flex-shrink:0" onmouseenter="this.style.color='#111'" onmouseleave="this.style.color='#bbb'">✦</button>
     <button class="chat-send" id="chatSend">↑</button>
   </div>
 </div>
@@ -1046,7 +1059,10 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
       <div class="email-form" id="emailForm">
         <input type="text" id="emailName" placeholder="Your name"/>
         <input type="email" id="emailFrom" placeholder="Your email"/>
-        <textarea id="emailMsg" placeholder="Your message…"></textarea>
+        <div style="position:relative">
+          <textarea id="emailMsg" placeholder="Your message…" style="padding-right:36px"></textarea>
+          <button onclick="wandRefineEmail()" title="Refine with AI" style="position:absolute;bottom:10px;right:10px;background:none;border:none;cursor:pointer;font-size:15px;color:#ccc;padding:0;transition:color .2s;line-height:1" onmouseenter="this.style.color='#111'" onmouseleave="this.style.color='#ccc'">✦</button>
+        </div>
         <button class="email-submit" onclick="sendEmail()">Send message →</button>
       </div>
       <div id="emailSuccess" style="display:none;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px;min-height:180px">
@@ -1119,6 +1135,56 @@ const chatClose=document.getElementById('chatClose');
 bubble.addEventListener('click',()=>{chatPanel.classList.remove('hidden');bubble.style.display='none'});
 chatClose.addEventListener('click',()=>{chatPanel.classList.add('hidden');bubble.style.display='flex'});
 
+// ── Replay pill ──
+const replayPill=document.getElementById('replayPill');
+let replayText='';
+let pillTimeout=null;
+
+document.addEventListener('mouseup',e=>{
+  if(e.target.closest('#chatPanel')||e.target.closest('.overlay'))return;
+  setTimeout(()=>{
+    const sel=window.getSelection();
+    const txt=sel&&sel.toString().trim();
+    if(!txt||txt.length<10){replayPill.classList.remove('show');return;}
+    replayText=txt;
+    const range=sel.getRangeAt(0);
+    const rect=range.getBoundingClientRect();
+    const pillW=120;
+    let left=rect.left+rect.width/2-pillW/2;
+    let top=rect.top+window.scrollY-40;
+    left=Math.max(8,Math.min(left,window.innerWidth-pillW-8));
+    replayPill.style.left=left+'px';
+    replayPill.style.top=top+'px';
+    replayPill.classList.add('show');
+    clearTimeout(pillTimeout);
+    pillTimeout=setTimeout(()=>replayPill.classList.remove('show'),4000);
+  },10);
+});
+
+document.addEventListener('mousedown',e=>{
+  if(e.target===replayPill)return;
+  replayPill.classList.remove('show');
+});
+
+replayPill.addEventListener('click',()=>{
+  replayPill.classList.remove('show');
+  // open chat
+  chatPanel.classList.remove('hidden');
+  bubble.style.display='none';
+  chatIntro.style.display='none';
+  // send selected text as context
+  const prompt=`I selected this from your portfolio: "${replayText.slice(0,300)}" — can you tell me more about this moment?`;
+  addMsg('user',`"${replayText.slice(0,120)}${replayText.length>120?'…':''}" — tell me more`);
+  hist.push({role:'user',content:prompt});
+  const t=addTyping();
+  fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:sys,messages:hist})})
+    .then(r=>r.json()).then(d=>{
+      const reply=d.content?.filter(b=>b.type==='text').map(b=>b.text).join('')||'Let me think about that.';
+      t.remove();addMsg('assistant',reply);hist.push({role:'assistant',content:reply});
+    }).catch(()=>{t.remove();addMsg('assistant','Connection hiccup — email ignacio@ignaciocanovas.com.');});
+  replayText='';
+});
+
 const chatIn=document.getElementById('chatIn');
 const chatSend=document.getElementById('chatSend');
 const chatMsgs=document.getElementById('chatMsgs');
@@ -1166,6 +1232,67 @@ function addMsg(role,text){
     el.textContent=text;
   }
   chatMsgs.appendChild(el);chatMsgs.scrollTop=chatMsgs.scrollHeight;
+}
+// ── Magic Wand — refine chat input ──
+async function wandRefineChat(){
+  const inp=document.getElementById('chatIn');
+  const text=inp.value.trim();
+  if(!text)return;
+  const wand=document.getElementById('chatWand');
+  wand.style.color='#111';
+  wand.textContent='⟳';
+  wand.style.animation='spin .8s linear infinite';
+  try{
+    const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      model:'claude-sonnet-4-20250514',max_tokens:200,
+      system:'You refine short questions or messages to be clearer and more concise. Return ONLY the refined text, nothing else. No explanation, no preamble.',
+      messages:[{role:'user',content:`Refine this message: "${text}"`}]
+    })});
+    const d=await res.json();
+    const refined=d.content?.filter(b=>b.type==='text').map(b=>b.text).join('').trim();
+    if(refined)inp.value=refined;
+  } catch(e){}
+  wand.textContent='✦';wand.style.color='#bbb';wand.style.animation='';
+}
+
+// ── Magic Wand — refine email message ──
+async function wandRefineEmail(){
+  const ta=document.getElementById('emailMsg');
+  const text=ta.value.trim();
+  if(!text)return;
+  const btn=event.currentTarget;
+  btn.textContent='⟳';btn.style.color='#111';
+  try{
+    const res=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      model:'claude-sonnet-4-20250514',max_tokens:400,
+      system:'You refine email messages to be clear, warm, and professional. Return ONLY the refined message text, nothing else. No subject line, no explanation.',
+      messages:[{role:'user',content:`Refine this email message: "${text}"`}]
+    })});
+    const d=await res.json();
+    const refined=d.content?.filter(b=>b.type==='text').map(b=>b.text).join('').trim();
+    if(refined)ta.value=refined;
+  } catch(e){}
+  btn.textContent='✦';btn.style.color='#ccc';
+}
+
+function chatQuickAction(type){
+  // turn clicked button black
+  const btnEmail=document.getElementById('btnEmail');
+  const btnCal=document.getElementById('btnCal');
+  btnEmail.style.background='#fff';btnEmail.style.color='#111';
+  btnCal.style.background='#fff';btnCal.style.color='#111';
+  if(type==='email'){
+    btnEmail.style.background='#111';btnEmail.style.color='#fff';
+    setTimeout(()=>document.getElementById('emailOverlay').classList.add('open'),200);
+  } else {
+    btnCal.style.background='#111';btnCal.style.color='#fff';
+    setTimeout(()=>document.getElementById('calOverlay').classList.add('open'),200);
+  }
+  // reset button after overlay closes
+  setTimeout(()=>{
+    btnEmail.style.background='#fff';btnEmail.style.color='#111';
+    btnCal.style.background='#fff';btnCal.style.color='#111';
+  },2000);
 }
 function closeOverlay(id){document.getElementById(id).classList.remove('open')}
 async function sendEmail(){
