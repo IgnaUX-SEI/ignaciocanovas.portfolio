@@ -68,8 +68,8 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 .stat{background:var(--card);padding:20px 18px}
 .stat-num{font-size:28px;font-weight:700;letter-spacing:-.03em;color:var(--ink);margin-bottom:3px}
 .stat-label{font-size:11px;color:var(--ink3);line-height:1.4}
-.cs-body{max-width:1060px;margin:0 auto;padding:0 52px 80px;display:grid;grid-template-columns:180px 1fr;gap:56px;align-items:start;width:100%}
-.sidebar{position:sticky;top:62px}
+.cs-body{max-width:760px;margin:0 auto;padding:0 52px 80px;width:100%}
+.sidebar{display:none}
 .sidebar-nav{list-style:none}
 .sidebar-nav a{display:block;font-size:11.5px;font-weight:500;color:var(--ink3);text-decoration:none;padding:8px 0;border-bottom:1px solid var(--line);transition:color .2s,padding-left .2s;cursor:pointer}
 .sidebar-nav a:hover,.sidebar-nav a.active{color:var(--ink);padding-left:6px}
@@ -196,8 +196,8 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 .paper-meta-item{display:flex;flex-direction:column;gap:3px}
 .paper-meta-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
 .paper-meta-value{font-size:13px;color:var(--ink2)}
-.paper-body{max-width:800px;margin:0 auto;padding:0 52px 100px;display:grid;grid-template-columns:160px 1fr;gap:56px;align-items:start;width:100%}
-.paper-sidebar{position:sticky;top:62px}
+.paper-body{max-width:760px;margin:0 auto;padding:0 52px 100px;width:100%}
+.paper-sidebar{display:none}
 .paper-nav{list-style:none}
 .paper-nav a{display:block;font-size:11.5px;font-weight:500;color:var(--ink3);text-decoration:none;padding:8px 0;border-bottom:1px solid var(--line);transition:color .2s,padding-left .2s;cursor:pointer}
 .paper-nav a:hover,.paper-nav a.active{color:var(--ink);padding-left:6px}
@@ -256,8 +256,7 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
   .stats-wrap{padding:0 20px 28px}
   .stats-6{grid-template-columns:repeat(3,1fr)}
   .stats-4{grid-template-columns:repeat(2,1fr)}
-  .cs-body{padding:0 20px 60px;grid-template-columns:1fr;gap:0}
-  .sidebar{display:none}
+  .cs-body{padding:0 20px 60px}
   .next-case{padding:24px 20px 36px}
   .nc-title{font-size:18px}
 
@@ -274,8 +273,7 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 
   /* PAPER */
   .paper-hero{padding:28px 20px 24px}
-  .paper-body{padding:0 20px 60px;grid-template-columns:1fr;gap:0}
-  .paper-sidebar{display:none}
+  .paper-body{padding:0 20px 60px}
   .paper-meta{gap:16px}
 
   /* ANIMATION SCROLL CONTAINERS */
