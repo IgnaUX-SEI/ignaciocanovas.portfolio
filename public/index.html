@@ -226,6 +226,81 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 @keyframes aimBlink{0%,100%{opacity:1}50%{opacity:0}}
 @keyframes skBlink{0%,100%{opacity:1}50%{opacity:0}}
 .p-path-arr{color:var(--ink3);font-size:10px}
+
+/* ═══════════ RESPONSIVE STATS CLASSES ═══════════ */
+.stats-6{grid-template-columns:repeat(6,1fr)}
+.stats-4{grid-template-columns:repeat(4,1fr)}
+
+/* ═══════════ MOBILE ═══════════ */
+@media(max-width:768px){
+  /* NAV */
+  nav{padding:0 20px;height:56px}
+  .wordmark span{display:none}
+  .wordmark{font-size:13px;max-width:calc(100vw - 100px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+  /* HOME */
+  #home.page.active{overflow:visible}
+  .home-page{height:auto;min-height:100vh}
+  .home-hero{padding:24px 20px 16px}
+  .home-lower{padding:0 20px 20px}
+  .home-name{font-size:clamp(38px,11vw,72px)}
+  .home-bio{max-width:100%}
+  .featured-card{flex-direction:column;align-items:flex-start;gap:14px}
+  .read-btn{width:100%;text-align:center}
+  .work-grid{grid-template-columns:1fr}
+  .home-footer{flex-wrap:wrap;height:auto;padding:16px 20px;gap:12px}
+
+  /* CASE STUDY SHELL */
+  .cs-hero{padding:28px 20px 24px}
+  .cs-title{font-size:clamp(28px,7vw,48px)}
+  .stats-wrap{padding:0 20px 28px}
+  .stats-6{grid-template-columns:repeat(3,1fr)}
+  .stats-4{grid-template-columns:repeat(2,1fr)}
+  .cs-body{padding:0 20px 60px;grid-template-columns:1fr;gap:0}
+  .sidebar{display:none}
+  .next-case{padding:24px 20px 36px}
+  .nc-title{font-size:18px}
+
+  /* CONTENT GRIDS */
+  .two-col{grid-template-columns:1fr}
+  .three-col{grid-template-columns:1fr}
+  .roadmap{grid-template-columns:repeat(2,1fr)}
+  .ev-grid{grid-template-columns:1fr}
+
+  /* TABLES */
+  .gov-row{grid-template-columns:76px 1fr 1fr 54px;font-size:11px;padding:9px 12px}
+  .gov-row.hdr{font-size:9px}
+  .shift-row{font-size:12.5px;padding:10px 14px}
+
+  /* PAPER */
+  .paper-hero{padding:28px 20px 24px}
+  .paper-body{padding:0 20px 60px;grid-template-columns:1fr;gap:0}
+  .paper-sidebar{display:none}
+  .paper-meta{gap:16px}
+
+  /* ANIMATION SCROLL CONTAINERS */
+  .anim-outer{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+  /* CHAT */
+  .chat-panel{right:10px;left:10px;width:auto;bottom:76px}
+  .chat-bubble{right:16px;bottom:54px}
+  .replay-pill{display:none}
+}
+
+@media(max-width:480px){
+  nav{padding:0 16px}
+  .home-name{font-size:clamp(34px,11vw,54px)}
+  .stats-6{grid-template-columns:repeat(2,1fr)}
+  .roadmap{grid-template-columns:1fr}
+  .cs-body{padding:0 16px 60px}
+  .paper-body{padding:0 16px 60px}
+  .cs-hero,.paper-hero{padding:24px 16px 20px}
+  .stats-wrap{padding:0 16px 28px}
+  .home-hero{padding:20px 16px 14px}
+  .home-lower{padding:0 16px 20px}
+  .home-footer{padding:14px 16px}
+  .next-case{padding:20px 16px 32px}
+}
 </style>
 </head>
 <body>
@@ -341,7 +416,7 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
   </div>
 
   <div class="stats-wrap">
-    <div class="stats-row" style="grid-template-columns:repeat(6,1fr)">
+    <div class="stats-row stats-6">
       <div class="stat"><div class="stat-num">300+</div><div class="stat-label">Screened participants</div></div>
       <div class="stat"><div class="stat-num">100+</div><div class="stat-label">Selected across surfaces</div></div>
       <div class="stat"><div class="stat-num">100+ hrs</div><div class="stat-label">Screen recordings</div></div>
@@ -408,7 +483,7 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
         <h2 class="sec-title">This is what one session actually looked like.</h2>
         <div class="sec-body"><p>From the search homepage through AIM confusion, into the SRP, down to the buried chat input, across to a linked page, and into the extension. Every friction point is real. Every cursor movement is based on observed behavior.</p></div>
         <div style="margin-top:20px;display:flex;flex-direction:column;align-items:flex-start;max-width:560px">
-          <div style="position:relative;width:500px">
+          <div class="anim-outer"><div style="position:relative;width:500px">
             <div style="width:100%;max-width:500px;border:2px solid #111;background:#ebebeb">
               <div style="background:#d8d8d8;border-bottom:2px solid #111;padding:6px 8px;display:flex;align-items:center;gap:5px">
                 <div style="width:8px;height:8px;border:1.5px solid #555;border-radius:50%;flex-shrink:0"></div>
@@ -500,6 +575,7 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
               </div>
             </div>
           </div>
+          </div><!-- /anim-outer -->
           <div style="margin-top:8px;font-family:monospace;font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#888;opacity:0;transition:opacity .5s" id="j-cap">No way to say "yes, continue."</div>
           <button onclick="jToggle()" style="margin-top:10px;background:none;border:1.5px solid #111;border-radius:999px;padding:4px 14px;font-family:monospace;font-size:9px;font-weight:600;color:#111;cursor:pointer" id="j-btn">&#9654; Play</button>
           <div style="position:fixed;pointer-events:none;z-index:500;width:14px;height:17px" id="j-cur" style="left:-50px;top:-50px">
@@ -548,7 +624,7 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 
           <div style="display:flex;flex-direction:column;align-items:flex-start">
             <div style="font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#888;font-family:monospace;margin-bottom:10px">Search · locked field → scroll → chat input</div>
-            <div style="position:relative;width:400px">
+            <div class="anim-outer"><div style="position:relative;width:400px">
               <div style="width:100%;max-width:400px;border:2px solid #111;background:#ebebeb">
                 <div style="background:#d8d8d8;border-bottom:2px solid #111;padding:6px 8px;display:flex;align-items:center;gap:5px">
                   <div style="width:8px;height:8px;border:1.5px solid #555;border-radius:50%;flex-shrink:0"></div>
@@ -588,6 +664,7 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
                 </div>
               </div>
             </div>
+            </div><!-- /anim-outer -->
             <div id="srp-caption" style="margin-top:8px;font-family:monospace;font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:#888;opacity:0;transition:opacity .5s">Type at the top. Continue at the bottom.</div>
             <button id="srp-playbtn" onclick="srpToggle()" style="margin-top:10px;background:none;border:1.5px solid #111;border-radius:999px;padding:4px 14px;font-family:monospace;font-size:9px;font-weight:600;color:#111;cursor:pointer">&#9654; Play</button>
             <div id="srp-cur" style="position:fixed;pointer-events:none;z-index:402;width:14px;height:17px;left:-50px;top:-50px;transition:left .5s ease,top .5s ease"><svg viewBox="0 0 14 17" width="14" height="17"><polygon points="1,1 1,15 5,11 8,16 10,15 7,10 12,10" fill="#f0f0f0" stroke="#111" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
@@ -742,7 +819,7 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
     </div>
   </div>
   <div class="stats-wrap">
-    <div class="stats-row" style="grid-template-columns:repeat(4,1fr)">
+    <div class="stats-row stats-4">
       <div class="stat"><div class="stat-num">18</div><div class="stat-label">Stakeholder interviews</div></div>
       <div class="stat"><div class="stat-num">200+</div><div class="stat-label">Observations synthesized</div></div>
       <div class="stat"><div class="stat-num">50+</div><div class="stat-label">Documents reviewed</div></div>
