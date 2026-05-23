@@ -254,13 +254,15 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
   #home.page.active{overflow:visible}
   .home-page{height:auto;min-height:100vh;overflow:visible}
   .home-hero{padding:24px 20px 16px}
-  .home-lower{padding:0 20px 20px}
-  .home-name{font-size:clamp(38px,11vw,72px)}
+  .home-lower{padding:0 20px 20px;overflow:visible;flex:none}
+  .home-name{font-size:clamp(28px,9vw,56px);white-space:normal}
   .home-bio{max-width:100%}
   .featured-card{flex-direction:column;align-items:flex-start;gap:14px}
   .read-btn{width:100%;text-align:center}
-  .work-grid{grid-template-columns:1fr}
-  .home-footer{padding:0 20px;height:auto;min-height:48px;flex-wrap:wrap;gap:8px}
+  .work-grid{grid-template-columns:1fr;flex:none}
+  .home-footer{flex-direction:column;align-items:flex-start;justify-content:center;height:auto;padding:12px 20px;gap:4px;max-width:none;margin:0}
+  .page-footer{flex-direction:column;align-items:flex-start;justify-content:center;height:auto;padding:12px 20px;gap:4px}
+  .cs-carousel{padding:12px 20px}
 
   /* CASE STUDY SHELL */
   .cs-hero{padding:28px 20px 24px}
@@ -299,7 +301,7 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 
 @media(max-width:480px){
   nav{padding:0 16px}
-  .home-name{font-size:clamp(34px,11vw,54px)}
+  .home-name{font-size:clamp(26px,9vw,48px)}
   .stats-6{grid-template-columns:repeat(2,1fr)}
   .roadmap{grid-template-columns:1fr}
   .cs-body{padding:0 16px 60px}
