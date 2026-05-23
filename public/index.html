@@ -54,10 +54,9 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 .card-meta-row:last-child{border-bottom:none}
 .card-meta-label{font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3);font-size:10px;transition:color .25s}
 .card-meta-value{font-weight:400;color:var(--ink2);transition:color .25s}
-.home-footer{border-top:1px solid var(--line);display:flex;flex-direction:column;align-items:stretch;padding:0 52px 10px;font-size:12px;color:var(--ink3);flex-shrink:0}
-.home-footer-row{display:flex;align-items:center;gap:24px;height:48px}
-.home-footer-row span,.home-footer-row a{color:var(--ink3);text-decoration:none;font-weight:400;white-space:nowrap}
-.home-footer-row a:hover{color:var(--ink)}
+.home-footer{border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;height:56px;padding:0 52px;font-size:12px;color:var(--ink3);flex-shrink:0}
+.home-footer a{color:var(--ink3);text-decoration:none;font-weight:400}
+.home-footer a:hover{color:var(--ink)}
 .home-page{height:100vh;overflow:hidden;display:flex;flex-direction:column}
 
 /* CASE STUDY */
@@ -258,8 +257,7 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
   .featured-card{flex-direction:column;align-items:flex-start;gap:14px}
   .read-btn{width:100%;text-align:center}
   .work-grid{grid-template-columns:1fr}
-  .home-footer{padding:12px 20px 14px}
-  .home-footer-row{flex-wrap:wrap;height:auto;gap:12px}
+  .home-footer{padding:0 20px;height:auto;min-height:48px;flex-wrap:wrap;gap:8px}
 
   /* CASE STUDY SHELL */
   .cs-hero{padding:28px 20px 24px}
@@ -385,20 +383,9 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
       </div>
     </div>
     <footer class="home-footer">
-      <div class="home-footer-row">
-        <span>Chicago, IL</span>
-        <span style="color:var(--line)">·</span>
-        <span>Accenture Song</span>
-        <span style="color:var(--line)">·</span>
-        <a href="mailto:ignacio@ignaciocanovas.com">ignacio@ignaciocanovas.com</a>
-        <span style="color:var(--line)">·</span>
-        <a href="#">LinkedIn</a>
-        <span style="color:var(--line)">·</span>
-        <a href="#">Medium</a>
-        <span style="color:var(--line)">·</span>
-        <a href="/resume.pdf" download>Resume</a>
-      </div>
-      <div style="font-size:11px;color:var(--ink3);padding-bottom:4px">Built with AI. Every decision was mine.</div>
+      <a href="mailto:ignacio@ignaciocanovas.com">ignacio@ignaciocanovas.com</a>
+      <span>Built with AI. Every decision was mine.</span>
+      <div style="display:flex;gap:16px"><a href="#">LinkedIn</a><a href="/resume.pdf" download>Resume</a></div>
     </footer>
   </div>
 </div>
