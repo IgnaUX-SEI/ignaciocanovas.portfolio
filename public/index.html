@@ -389,7 +389,7 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
       <div class="home-footer-row">
         <div style="display:flex;gap:20px"><span>Chicago, IL</span><span>Accenture Song</span></div>
         <a href="mailto:ignacio@ignaciocanovas.com" style="color:var(--ink3);font-weight:400">ignacio@ignaciocanovas.com</a>
-        <div style="display:flex;gap:20px"><a href="#">LinkedIn</a><a href="#">Medium</a></div>
+        <div style="display:flex;gap:20px"><a href="#">LinkedIn</a><a href="#">Medium</a><a href="/resume.pdf" download>Resume</a></div>
       </div>
       <div style="text-align:center;font-size:11px;color:var(--ink3);margin-top:2px;padding-bottom:4px">Built with AI. Every decision was mine.</div>
     </footer>
@@ -1377,7 +1377,10 @@ IMPORTANT: Never dump all seven sections at once. Always respond to exactly the 
 
 CONTACT: ignacio@ignaciocanovas.com | ignaciocanovas.ai | Chicago, IL
 
-If someone wants to reach out, tell them to use the Email or Schedule a call buttons in the interface. Never say you cannot send emails — direct them to the buttons instead.`;
+If someone wants to reach out, tell them to use the Email or Schedule a call buttons in the interface. Never say you cannot send emails — direct them to the buttons instead.
+
+RESUME: When someone asks for the resume, CV, or work history, respond with 1-2 sentences of context first (e.g. background, what the resume covers), then end with this exact HTML on its own line:
+<a href='/resume.pdf' download style='color:#111;font-weight:600'>↓ Download Resume</a>`;
 
 
 function enterConvoMode(){
@@ -1460,7 +1463,7 @@ function fetchReply(t,userText){
 function addMsg(role,text){
   const el=document.createElement('div');
   el.className='msg '+role;
-  el.textContent=text;
+  if(role==='assistant'){el.innerHTML=text;}else{el.textContent=text;}
   chatMsgs.appendChild(el);
   chatMsgs.scrollTop=chatMsgs.scrollHeight;
 }
