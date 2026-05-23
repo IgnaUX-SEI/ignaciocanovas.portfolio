@@ -54,7 +54,8 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 .card-meta-row:last-child{border-bottom:none}
 .card-meta-label{font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3);font-size:10px;transition:color .25s}
 .card-meta-value{font-weight:400;color:var(--ink2);transition:color .25s}
-.home-footer{border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;height:72px;padding:0 52px;font-size:12px;color:var(--ink3);margin-top:auto}
+.home-footer{border-top:1px solid var(--line);display:flex;flex-direction:column;align-items:stretch;padding:0 52px 16px;font-size:12px;color:var(--ink3);margin-top:auto}
+.home-footer-row{display:flex;justify-content:space-between;align-items:center;height:72px}
 .home-footer a{color:var(--ink);text-decoration:none;font-weight:500}
 .home-footer a:hover{opacity:.6}
 .home-page{height:100vh;display:flex;flex-direction:column}
@@ -257,7 +258,8 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
   .featured-card{flex-direction:column;align-items:flex-start;gap:14px}
   .read-btn{width:100%;text-align:center}
   .work-grid{grid-template-columns:1fr}
-  .home-footer{flex-wrap:wrap;height:auto;padding:16px 20px;gap:12px}
+  .home-footer{padding:12px 20px 14px}
+  .home-footer-row{flex-wrap:wrap;height:auto;gap:12px}
 
   /* CASE STUDY SHELL */
   .cs-hero{padding:28px 20px 24px}
@@ -384,9 +386,12 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
       </div>
     </div>
     <footer class="home-footer">
-      <div style="display:flex;gap:20px"><span>Chicago, IL</span><span>Accenture Song</span></div>
-      <a href="mailto:ignacio@ignaciocanovas.com" style="color:var(--ink3);font-weight:400">ignacio@ignaciocanovas.com</a>
-      <div style="display:flex;gap:20px"><a href="#">LinkedIn</a><a href="#">Medium</a></div>
+      <div class="home-footer-row">
+        <div style="display:flex;gap:20px"><span>Chicago, IL</span><span>Accenture Song</span></div>
+        <a href="mailto:ignacio@ignaciocanovas.com" style="color:var(--ink3);font-weight:400">ignacio@ignaciocanovas.com</a>
+        <div style="display:flex;gap:20px"><a href="#">LinkedIn</a><a href="#">Medium</a></div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:var(--ink3);margin-top:2px;padding-bottom:4px">Built with AI. Every decision was mine.</div>
     </footer>
   </div>
 </div>
