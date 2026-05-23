@@ -28,10 +28,10 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 .dropdown a+a{border-top:1px solid rgba(0,0,0,0.06)}
 
 /* HOME */
-.home-hero{padding:60px 52px 14px;max-width:1100px;width:100%;margin:0 auto}
+.home-hero{padding:60px 32px 14px;max-width:1100px;width:100%;margin:0 auto}
 .home-name{font-size:clamp(32px,5vw,64px);font-weight:700;letter-spacing:-.04em;line-height:1;color:var(--ink);margin-bottom:14px;white-space:nowrap}
 .home-bio{font-size:15px;font-weight:400;line-height:1.65;color:var(--ink2);max-width:480px}
-.home-lower{padding:0 52px 80px;flex:1;display:flex;flex-direction:column;overflow:hidden;max-width:1100px;width:100%;margin:0 auto}
+.home-lower{padding:0 32px 80px;flex:1;display:flex;flex-direction:column;overflow:hidden;max-width:1100px;width:100%;margin:0 auto}
 .eyebrow{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:10px}
 .featured-card{background:var(--card);border-radius:var(--r);padding:16px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:16px}
 .feat-title{font-size:19px;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin-bottom:5px}
@@ -54,9 +54,18 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 .card-meta-row:last-child{border-bottom:none}
 .card-meta-label{font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--ink3);font-size:10px;transition:color .25s}
 .card-meta-value{font-weight:400;color:var(--ink2);transition:color .25s}
-.home-footer{border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;height:56px;padding:0 52px;font-size:12px;color:var(--ink3);flex-shrink:0;max-width:1100px;width:100%;margin:0 auto}
+.home-footer{border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;height:56px;padding:0 32px;font-size:12px;color:var(--ink3);flex-shrink:0;max-width:1100px;width:100%;margin:0 auto}
 .home-footer a{color:var(--ink3);text-decoration:none;font-weight:400}
 .home-footer a:hover{color:var(--ink)}
+.page-footer{border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;height:52px;padding:0 32px;font-size:12px;color:var(--ink3)}
+.page-footer a{color:var(--ink3);text-decoration:none}
+.page-footer a:hover{color:var(--ink)}
+.cs-carousel{display:flex;align-items:center;justify-content:center;gap:4px;padding:14px 32px;border-top:1px solid var(--line)}
+.cs-carousel-arrow{background:none;border:none;cursor:pointer;font-size:15px;color:var(--ink3);padding:6px 10px;transition:color .15s;font-family:inherit}
+.cs-carousel-arrow:hover{color:var(--ink)}
+.cs-carousel-item{background:none;border:none;cursor:pointer;font-family:inherit;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);padding:6px 12px;border-radius:6px;transition:color .15s,background .15s}
+.cs-carousel-item:hover{color:var(--ink)}
+.cs-carousel-item.active{color:var(--ink);background:var(--card)}
 .home-page{height:100vh;overflow:hidden;display:flex;flex-direction:column}
 
 /* CASE STUDY */
@@ -131,12 +140,6 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 .impl-num{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
 .impl-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em}
 .impl-body{font-size:13px;font-weight:400;line-height:1.55;color:var(--ink2)}
-.next-case{padding:40px 52px 60px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:background .3s}
-.next-case:hover{background:var(--ink)}
-.next-case:hover .nc-label,.next-case:hover .nc-title,.next-case:hover .nc-arrow{color:#fff}
-.nc-label{font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px;transition:color .3s}
-.nc-title{font-size:22px;font-weight:700;letter-spacing:-.025em;color:var(--ink);transition:color .3s}
-.nc-arrow{font-size:26px;color:var(--ink);transition:color .3s}
 
 /* CHAT */
 .chat-bubble{position:fixed;right:20px;bottom:20px;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;z-index:300;background:#111;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:transform .2s}
@@ -267,8 +270,6 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
   .stats-4{grid-template-columns:repeat(2,1fr)}
   .cs-body{padding:0 20px 60px;grid-template-columns:1fr;gap:0}
   .sidebar{display:none}
-  .next-case{padding:24px 20px 36px}
-  .nc-title{font-size:18px}
 
   /* CONTENT GRIDS */
   .two-col{grid-template-columns:1fr}
@@ -308,7 +309,6 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
   .home-hero{padding:20px 16px 14px}
   .home-lower{padding:0 16px 20px}
   .home-footer{padding:14px 16px}
-  .next-case{padding:20px 16px 32px}
 }
 </style>
 </head>
@@ -401,10 +401,18 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
     <h1 class="cs-title">Accenture Reinvention<br>Navigator</h1>
     <p class="cs-sub">Coming soon — this case study is being prepared.</p>
   </div>
-  <div class="next-case" onclick="go('cs02')">
-    <div><div class="nc-label">Next Case Study</div><div class="nc-title">Human-AI Interaction Across Three Surfaces</div></div>
-    <div class="nc-arrow">→</div>
+  <div class="cs-carousel">
+    <button class="cs-carousel-arrow" onclick="csNav(-1,'cs01')">←</button>
+    <button class="cs-carousel-item active" onclick="go('cs01')">CS01</button>
+    <button class="cs-carousel-item" onclick="go('cs02')">CS02</button>
+    <button class="cs-carousel-item" onclick="go('cs03')">CS03</button>
+    <button class="cs-carousel-arrow" onclick="csNav(1,'cs01')">→</button>
   </div>
+  <footer class="page-footer">
+    <a href="mailto:ignacio@ignaciocanovas.com">ignacio@ignaciocanovas.com</a>
+    <span>Built with AI. Every decision was mine.</span>
+    <div style="display:flex;gap:16px"><a href="#">LinkedIn</a><a href="/resume.pdf" download>Resume</a></div>
+  </footer>
 </div>
 
 <!-- ══════════ CS02 ══════════ -->
@@ -800,6 +808,18 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 
     </main>
   </div>
+  <div class="cs-carousel">
+    <button class="cs-carousel-arrow" onclick="csNav(-1,'cs02')">←</button>
+    <button class="cs-carousel-item" onclick="go('cs01')">CS01</button>
+    <button class="cs-carousel-item active" onclick="go('cs02')">CS02</button>
+    <button class="cs-carousel-item" onclick="go('cs03')">CS03</button>
+    <button class="cs-carousel-arrow" onclick="csNav(1,'cs02')">→</button>
+  </div>
+  <footer class="page-footer">
+    <a href="mailto:ignacio@ignaciocanovas.com">ignacio@ignaciocanovas.com</a>
+    <span>Built with AI. Every decision was mine.</span>
+    <div style="display:flex;gap:16px"><a href="#">LinkedIn</a><a href="/resume.pdf" download>Resume</a></div>
+  </footer>
 </div>
 
 
@@ -928,10 +948,18 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
       </div>
     </main>
   </div>
-  <div class="next-case" onclick="go('home')">
-    <div><div class="nc-label">Back to</div><div class="nc-title">All Case Studies</div></div>
-    <div class="nc-arrow">→</div>
+  <div class="cs-carousel">
+    <button class="cs-carousel-arrow" onclick="csNav(-1,'cs03')">←</button>
+    <button class="cs-carousel-item" onclick="go('cs01')">CS01</button>
+    <button class="cs-carousel-item" onclick="go('cs02')">CS02</button>
+    <button class="cs-carousel-item active" onclick="go('cs03')">CS03</button>
+    <button class="cs-carousel-arrow" onclick="csNav(1,'cs03')">→</button>
   </div>
+  <footer class="page-footer">
+    <a href="mailto:ignacio@ignaciocanovas.com">ignacio@ignaciocanovas.com</a>
+    <span>Built with AI. Every decision was mine.</span>
+    <div style="display:flex;gap:16px"><a href="#">LinkedIn</a><a href="/resume.pdf" download>Resume</a></div>
+  </footer>
 </div>
 
 <!-- ══════════ CHAT ══════════ -->
@@ -1110,10 +1138,11 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
       </div>
     </main>
   </div>
-  <div class="next-case" onclick="go('home')">
-    <div><div class="nc-label">Back to</div><div class="nc-title">Portfolio</div></div>
-    <div class="nc-arrow">→</div>
-  </div>
+  <footer class="page-footer">
+    <a href="mailto:ignacio@ignaciocanovas.com">ignacio@ignaciocanovas.com</a>
+    <span>Built with AI. Every decision was mine.</span>
+    <div style="display:flex;gap:16px"><a href="#">LinkedIn</a><a href="/resume.pdf" download>Resume</a></div>
+  </footer>
 </div>
 
 
@@ -1223,10 +1252,15 @@ function checkPw(inputId, pageId, errId){
   if(val==='000'){go(pageId);}
   else{const e=document.getElementById(errId);e.style.display='block';setTimeout(()=>e.style.display='none',2000);}
 }
+const csPages=['cs01','cs02','cs03'];
+function csNav(dir,cur){const i=csPages.indexOf(cur);go(csPages[(i+dir+csPages.length)%csPages.length]);}
 function go(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
+  // Reposition bubble: higher on case study pages so it clears carousel+footer
+  const bubble=document.getElementById('chatBubble');
+  if(bubble)bubble.style.bottom=csPages.includes(id)||id==='paper'?'120px':'20px';
   setTimeout(()=>{
     const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});},{threshold:0.05});
     document.querySelectorAll('#'+id+' .section, #'+id+' .psec').forEach(s=>{s.classList.remove('visible');obs.observe(s)});
