@@ -397,11 +397,182 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
     <button class="wordmark" onclick="go('home')">Ignacio Cánovas <span>— AI Product Strategist, Accenture Song</span></button>
     <button class="back-btn" onclick="go('home')">← Back</button>
   </nav>
+
   <div class="cs-hero">
-    <div class="cs-label">Case Study 01</div>
+    <div class="cs-label">Case Study 01 · AI Experience Design · 2026</div>
     <h1 class="cs-title">Accenture Reinvention<br>Navigator</h1>
-    <p class="cs-sub">Coming soon — this case study is being prepared.</p>
+    <p class="cs-sub">From feature prioritization to AI output quality — shaping product direction across three sequential research phases on an enterprise change management platform.</p>
+    <div class="tags">
+      <span class="tag">AI Experience Design</span><span class="tag">E2E Product Design</span><span class="tag">Research Strategy</span><span class="tag">Human-in-the-Loop</span><span class="tag">AI Quality Assessment</span><span class="tag">Enterprise AI</span>
+    </div>
   </div>
+
+  <div class="stats-wrap">
+    <div class="stats-row stats-6">
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Research phases</div></div>
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Practitioners</div></div>
+      <div class="stat"><div class="stat-num">144</div><div class="stat-label">Atomic observations</div></div>
+      <div class="stat"><div class="stat-num">48</div><div class="stat-label">Findings</div></div>
+      <div class="stat"><div class="stat-num">13</div><div class="stat-label">Strategic recommendations</div></div>
+      <div class="stat"><div class="stat-num">5 mo</div><div class="stat-label">Engagement</div></div>
+    </div>
+  </div>
+
+  <div class="cs-body">
+    <aside class="sidebar">
+      <ul class="sidebar-nav" id="nav01">
+        <li><a onclick="scrollTo01('s01-story')">The Story</a></li>
+        <li><a onclick="scrollTo01('s01-problem')">The Problem</a></li>
+        <li><a onclick="scrollTo01('s01-happy')">The Happy Path</a></li>
+        <li><a onclick="scrollTo01('s01-phase1')">01 · Prioritization</a></li>
+        <li><a onclick="scrollTo01('s01-phase2')">02 · Usability</a></li>
+        <li><a onclick="scrollTo01('s01-phase3')">03 · AI Quality</a></li>
+        <li><a onclick="scrollTo01('s01-larger')">The Larger Move</a></li>
+      </ul>
+    </aside>
+    <main>
+
+      <!-- THE STORY -->
+      <div class="section" id="s01-story">
+        <div class="sec-eyebrow">01 · The Story</div>
+        <h2 class="sec-title">A product nobody had mapped, and an AI nobody knew how to assess.</h2>
+        <div class="sec-body">
+          <p>Most researchers get handed a product and asked to validate it. I got handed a product nobody had mapped, a team without a user flow, and an AI agent producing outputs nobody knew how to assess.</p>
+          <p>The Reinvention Navigator is Accenture's enterprise change management platform. The Change Impact Agent is a new AI-powered feature being built natively inside it — designed to replace a fragmented six-step manual process that practitioners were running across ChatGPT, Copilot, and Excel, with no traceability and no integration with the platform.</p>
+          <p>My engagement spans three sequential research phases. Each one expanded the scope of what I owned — from validating a feature list, to defining the end-to-end navigation, to designing the research infrastructure that determines whether an AI agent is ready to be committed to client delivery.</p>
+        </div>
+      </div>
+
+      <!-- THE PROBLEM -->
+      <div class="section" id="s01-problem">
+        <div class="sec-eyebrow">02 · The Problem</div>
+        <h2 class="sec-title">Change impacts were being extracted everywhere except the platform.</h2>
+        <div class="sec-body"><p>Change practitioners were extracting change impacts outside of Reinvention Navigator — using whatever tools were available — then importing results by hand. The workflow looked like this:</p></div>
+        <ol class="proc-list">
+          <li><strong>Attend workshops</strong> — extract change impact signals from conversations not designed for that purpose.</li>
+          <li><strong>Take notes or get a Copilot summary</strong> — OneNote, manual notes, or Copilot.</li>
+          <li><strong>Synthesize in ChatGPT</strong> — paste notes, prompt for extraction, refine across people, process, technology, and data.</li>
+          <li><strong>Build an Excel</strong> — paste ChatGPT output into a CIA Excel template.</li>
+          <li><strong>Import to RN</strong> — upload manually.</li>
+          <li><strong>Deliver to client</strong>.</li>
+        </ol>
+        <div class="cs-note">The Change Impact Agent was designed to replace steps 3, 4, and 5. The question was: <strong>which features to build first, whether the navigation worked, and whether the AI output was actually good enough to use.</strong></div>
+      </div>
+
+      <!-- THE HAPPY PATH -->
+      <div class="section" id="s01-happy">
+        <div class="sec-eyebrow">03 · The Happy Path</div>
+        <h2 class="sec-title">The end-to-end flow — mapped before a line of it was built.</h2>
+        <div class="sec-body"><p>Before any research began, I documented the end-to-end user flow across six screens — the flow the team in India was building without having mapped.</p></div>
+        <div class="flow">
+          <div class="flow-step"><div class="flow-num">01</div><div class="flow-label">Entry</div><div class="flow-desc">Click "Create Impact Using AI"</div></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><div class="flow-num">02</div><div class="flow-label">Configure</div><div class="flow-desc">Upload transcripts, set context</div></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><div class="flow-num">03</div><div class="flow-label">Process</div><div class="flow-desc">Agent runs in the background</div></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><div class="flow-num">04</div><div class="flow-label">Review</div><div class="flow-desc">Triage by AI confidence</div></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><div class="flow-num">05</div><div class="flow-label">Edit</div><div class="flow-desc">Refine fields, mark reviewed</div></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><div class="flow-num">06</div><div class="flow-label">Commit</div><div class="flow-desc">Push to live RN register</div></div>
+        </div>
+        <div class="findings">
+          <div class="finding"><div class="finding-num">01</div><div><div class="finding-title">Entry</div><div class="finding-body">Practitioner clicks "Create Impact Using AI" from the Change Impact Analysis section.</div></div></div>
+          <div class="finding"><div class="finding-num">02</div><div><div class="finding-title">Configure</div><div class="finding-body">Uploads transcripts, context documents, and session notes. Sets batch information, RN reference data, and AI guidance instructions. Context is configured before documents are uploaded so the agent processes files with the right framing.</div></div></div>
+          <div class="finding"><div class="finding-num">03</div><div><div class="finding-title">Process</div><div class="finding-body">Agent runs in the background. Practitioners step away. A notification fires via email or Teams when processing is complete. Output: "20 change impacts found."</div></div></div>
+          <div class="finding"><div class="finding-num">04</div><div><div class="finding-title">Review</div><div class="finding-body">Practitioner opens the draft impact table. Triages by AI Confidence (Low / Medium / High). High confidence with solid evidence allows faster skimming. Low confidence signals a row that needs full review.</div></div></div>
+          <div class="finding"><div class="finding-num">05</div><div><div class="finding-title">Edit</div><div class="finding-body">Double-clicks a row to open the editing view. All fields are populated — Title, Summary, Current State, Future State, Impact Assessment. AI Rationale shows how the model interpreted the materials; Evidence shows the transcript excerpts that grounded the extraction. Practitioner edits, saves, and status moves from Draft → Reviewed.</div></div></div>
+          <div class="finding"><div class="finding-num">06</div><div><div class="finding-title">Commit</div><div class="finding-body">Approved impacts are pushed into the live RN change impact register for the engagement. The threshold for committing: AI Confidence, Rationale, and Evidence all present and aligned.</div></div></div>
+        </div>
+      </div>
+
+      <!-- PHASE 01 -->
+      <div class="section" id="s01-phase1">
+        <div class="sec-eyebrow">04 · Phase 01 — Feature Prioritization</div>
+        <h2 class="sec-title">Which of 23 features get built first — and which assumptions break under evidence?</h2>
+        <div class="sec-body"><p>I designed and facilitated a 1-hour Mural-based prioritization workshop with 6 change practitioners. The session covered 4 prototype screens using a drag-and-drop activity where participants placed sticky notes by priority level across three workflow areas. Four patterns emerged from the data.</p></div>
+        <div class="findings">
+          <div class="finding"><div class="finding-num">01</div><div><div class="finding-title">The feature set is validated by lived experience</div><div class="finding-body">Participants described the problems before they saw the features. This was not a speculative build.</div></div></div>
+          <div class="finding"><div class="finding-num">02</div><div><div class="finding-title">Mandatory features needed defending, not descoping</div><div class="finding-body">Four mandatory features received weak vote signal — not because they lacked value, but because participants didn't connect the label to the solution. They had built workarounds for the exact problems these features solve. The evidence layer revealed a comprehension gap, not a value gap. This finding changed how the product team treated the feature set.</div></div></div>
+          <div class="finding"><div class="finding-num">03</div><div><div class="finding-title">Two optional features should be reclassified as near-essential</div><div class="finding-body">"Group impacts into themes" received unanimous High votes. "Export to Excel / Edit / Re-Import" received strong High signals — Excel remained the working environment for most practitioners, and removing export capability would break existing workflows.</div></div></div>
+          <div class="finding"><div class="finding-num">04</div><div><div class="finding-title">RN-native context changes the value proposition</div><div class="finding-body">Some votes were cast before participants understood the tool was RN-native. That context shifted the perceived value of several features — meaning early votes had to be treated as directional, not definitive.</div></div></div>
+        </div>
+        <div class="cs-note"><strong>Baseline established:</strong> Practitioners were already getting 3.8 out of 5 on output quality from self-built agents. That number became the benchmark Phase 03 is designed to meet or exceed.</div>
+      </div>
+
+      <!-- PHASE 02 -->
+      <div class="section" id="s01-phase2">
+        <div class="sec-eyebrow">05 · Phase 02 — Usability Testing</div>
+        <h2 class="sec-title">Is it ready for release — and what must be resolved before engineering commits?</h2>
+        <div class="sec-body"><p>Before running a single session I tested the prototype myself. It made no sense. The user flow was missing entirely. I mapped it before the sessions began — giving the India team a navigational foundation they could work from. This wasn't a research deliverable. It was a product decision made under time pressure to prevent a failed study.</p><p>I designed and facilitated 4 concept testing sessions across 2 days with 10 change practitioners across the T&amp;O team, Rio Tinto, and Belden.</p></div>
+        <div class="cs-note"><strong>Pipeline:</strong> 144 atomic observations → 48 per-screen findings → 12 cross-study themes → 13 strategic recommendations.</div>
+        <div class="group-label">4 Critical Issues — Fix Before Build</div>
+        <div class="findings">
+          <div class="finding"><div class="finding-num">01</div><div><div class="finding-title">SR-01 — Redesign the end-to-end flow</div><div class="finding-body">Clicking "Create Impact Using AI" led participants to expect an immediate AI interaction — not a dashboard. The fix: remove the Batch Overview as an entry point. "Create with AI" goes directly to Batch Configuration. Returning users access batches via a "View my batches" link.</div></div></div>
+          <div class="finding"><div class="finding-num">02</div><div><div class="finding-title">SR-03 — Resolve terminology before the product is labelled</div><div class="finding-body">"Batch" confused participants in 3 of 4 sessions. "Batch Configuration" was flagged as not being change management language. Recommended alternatives: <em>Session upload</em> or <em>Transcript upload</em> instead of "batch"; <em>Configure your session</em> or <em>Set up extraction</em> instead of "Batch Configuration."</div></div></div>
+          <div class="finding"><div class="finding-num">03</div><div><div class="finding-title">SR-04 — Reorder Batch Configuration before it is built</div><div class="finding-body">Sessions 2 and 3 independently identified the same preferred order: context must be set before documents are uploaded so the AI processes files with the right framing. Recommended order: Batch Information → RN Reference Data → Upload Documents → AI Guidance.</div></div></div>
+          <div class="finding"><div class="finding-num">04</div><div><div class="finding-title">SR-05 — Collapse the individual editing view into the table</div><div class="finding-body">Participants avoided navigating away from the table in all 4 sessions. Eight interaction patterns were identified that could keep users in the table — accordion row expansion, hover tooltips, a slide-out detail panel, evidence markers, and conversational AI for field correction.</div></div></div>
+        </div>
+        <div class="group-label">4 Things That Are Working — Protect in MVP 1</div>
+        <div class="findings">
+          <div class="finding"><div class="finding-num">01</div><div><div class="finding-title">AI Rationale + Evidence</div><div class="finding-body">The most consistently valued features across all sessions.</div></div></div>
+          <div class="finding"><div class="finding-num">02</div><div><div class="finding-title">The editing view structure</div><div class="finding-body">The strongest screen in the prototype. Step-by-step layout, Previous/Next navigation, and Rationale + Evidence proximity to editable fields all worked.</div></div></div>
+          <div class="finding"><div class="finding-num">03</div><div><div class="finding-title">The AI Guidance field</div><div class="finding-body">Well understood and immediately valued.</div></div></div>
+          <div class="finding"><div class="finding-num">04</div><div><div class="finding-title">The batch-per-workshop model</div><div class="finding-body">Directly addressed the documented pain point of waiting for all workshops to finish before extracting.</div></div></div>
+        </div>
+        <div class="pull-quote">"The combination of confidence level and evidence is what makes this usable — not just a number." — Bradley</div>
+      </div>
+
+      <!-- PHASE 03 -->
+      <div class="section" id="s01-phase3">
+        <div class="sec-eyebrow">06 · Phase 03 — AI Output Quality Test</div>
+        <h2 class="sec-title">Is the extraction accurate enough to commit to a real client project?</h2>
+        <div class="cs-note"><strong>Research in progress.</strong> Findings due June 4, 2026.</div>
+        <div class="sec-body"><p>The quality test I designed goes beyond usability. It introduces a hallucination detection framework built into the assessment methodology itself — without asking participants to evaluate for hallucinations directly. The assessment evaluates 7 dimensions per impact.</p></div>
+        <div class="q-table-wrap">
+          <table class="q-table">
+            <thead><tr><th>Dimension</th><th>Scale</th><th>What it captures</th></tr></thead>
+            <tbody>
+              <tr><td>Field Quality</td><td>1–10</td><td>Title, summary, current state, future state accuracy</td></tr>
+              <tr><td>Mapped Fields</td><td>1–10</td><td>Stakeholders, locations, process areas vs. reference data</td></tr>
+              <tr><td>Impact Rating</td><td>1–10</td><td>People, process, technology risk levels</td></tr>
+              <tr><td>Evidence Traceable?</td><td>Yes / No</td><td>Can they find the source in the transcript? No = hallucination signal</td></tr>
+              <tr><td>AI Confidence Agree?</td><td>Yes / No</td><td>Does the AI score match their judgment?</td></tr>
+              <tr><td>Editing Intent</td><td>K / E / D</td><td>Keep, Edit, or Delete — and why</td></tr>
+              <tr><td>Output Accuracy</td><td>1–10</td><td>Overall synthesis score</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="sec-body" style="margin-top:24px"><p>The K / E / D column is a behavioral variable, not a self-reported one. It captures what the practitioner actually decides to do with each AI-generated impact — without priming them to look for errors.</p></div>
+        <div class="findings">
+          <div class="finding"><div class="finding-num">E</div><div><div class="finding-title">Edit</div><div class="finding-body">The impact is directionally correct but contains inaccurate content, wrong stakeholder mapping, or a current/future state that collapses. Signals partial hallucination or gap-filling.</div></div></div>
+          <div class="finding"><div class="finding-num">D</div><div><div class="finding-title">Delete</div><div class="finding-body">The impact should not exist. The AI generated content with no grounding in the source documents. Primary hallucination signal.</div></div></div>
+          <div class="finding"><div class="finding-num">K</div><div><div class="finding-title">Keep</div><div class="finding-body">The impact is accurate, complete, and trusted as-is. The baseline for output quality.</div></div></div>
+        </div>
+        <div class="cs-note">Combined with <strong>Evidence Traceable?</strong>, the two variables form a hallucination detection matrix: <strong>Delete + No Evidence = confirmed hallucination.</strong> Edit + traceable evidence = interpretation error, not fabrication.</div>
+        <div class="sec-body"><p><strong>Session structure:</strong> 45 minutes, 1-on-1, screen share. 5 Accenture practitioners using their own real transcripts. The quality benchmark is established before participants see any AI output — so expectations are captured before evaluation begins.</p></div>
+        <div class="pull-quote">"Would you commit this output to a client deliverable as-is, with edits, or not yet?"</div>
+        <div class="cs-note"><strong>Findings: TBD — quality test in progress.</strong></div>
+      </div>
+
+      <!-- THE LARGER MOVE -->
+      <div class="section" id="s01-larger">
+        <div class="sec-eyebrow">07 · The Larger Move</div>
+        <h2 class="sec-title">From UX researcher to AI Experience Designer with product influence.</h2>
+        <div class="sec-body">
+          <p>This engagement is a deliberate move from UX researcher to AI Experience Designer with product and strategic influence.</p>
+          <p><strong>Phase 01</strong> established domain authority — the feature prioritization evidence base the entire engineering roadmap was built on.</p>
+          <p><strong>Phase 02</strong> expanded scope from research facilitation to end-to-end product definition — moving the conversation from "what features do we build" to "what navigation decisions must be resolved before a single line of code is written."</p>
+          <p><strong>Phase 03</strong> is where the AI leadership positioning becomes explicit — designing the research infrastructure that determines whether an AI agent is ready to be committed to client delivery. The hallucination detection framework I built into the methodology is not a standard UX research construct. It is a behavioral proxy for AI output trustworthiness.</p>
+          <p>Across this engagement I also changed how the team worked. The India team was operating without AI-assisted workflows. I assessed their current ways of working, identified where AI could accelerate without sacrificing rigor, and adjusted. The change wasn't just what we researched — it was how we researched.</p>
+        </div>
+        <div class="cs-note"><strong>What's next:</strong> Training Needs Assessment — the fourth research initiative in this engagement.</div>
+      </div>
+
+    </main>
+  </div>
+
   <footer class="page-footer">
     <a href="mailto:ignacio@ignaciocanovas.com">ignacio@ignaciocanovas.com</a>
     <span>Built with AI. Every decision was mine.</span>
