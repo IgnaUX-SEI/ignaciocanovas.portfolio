@@ -139,6 +139,27 @@ nav{display:flex;justify-content:space-between;align-items:center;height:72px;pa
 .impl-num{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3);margin-bottom:6px}
 .impl-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em}
 .impl-body{font-size:13px;font-weight:400;line-height:1.55;color:var(--ink2)}
+/* CS01 — workflow diagram, quality table, notes, process list */
+.flow{display:flex;align-items:stretch;flex-wrap:wrap;gap:6px;margin-top:24px;max-width:640px}
+.flow-step{flex:1 1 92px;background:var(--card);border-radius:12px;padding:14px 13px;display:flex;flex-direction:column}
+.flow-num{font-size:10px;font-weight:700;letter-spacing:.06em;color:var(--ink3);margin-bottom:7px}
+.flow-label{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:5px;letter-spacing:-.01em}
+.flow-desc{font-size:11.5px;line-height:1.4;color:var(--ink2)}
+.flow-arrow{display:flex;align-items:center;justify-content:center;color:var(--ink3);font-size:15px;flex:0 0 auto}
+.q-table-wrap{margin-top:20px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;max-width:640px}
+.q-table{width:100%;border-collapse:collapse;font-size:13px}
+.q-table th{background:var(--ink);color:#fff;text-align:left;padding:11px 14px;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.q-table td{padding:11px 14px;border-top:1px solid var(--line);background:var(--card);color:var(--ink2);line-height:1.45;vertical-align:top}
+.q-table td:first-child{font-weight:600;color:var(--ink)}
+.q-table td:nth-child(2){color:var(--ink3);font-weight:600;white-space:nowrap}
+.cs-note{background:var(--card);border-left:3px solid var(--ink3);border-radius:0 var(--r) var(--r) 0;padding:14px 16px;font-size:13px;line-height:1.55;color:var(--ink2);margin:22px 0;max-width:640px}
+.cs-note strong{color:var(--ink);font-weight:600}
+.group-label{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);margin:30px 0 0}
+.proc-list{list-style:none;counter-reset:proc;margin-top:20px;display:flex;flex-direction:column;gap:10px;max-width:640px}
+.proc-list li{counter-increment:proc;position:relative;padding-left:34px;font-size:14px;line-height:1.5;color:var(--ink2)}
+.proc-list li::before{content:counter(proc,decimal-leading-zero);position:absolute;left:0;top:1px;font-size:11px;font-weight:700;color:var(--ink3)}
+.proc-list li strong{color:var(--ink);font-weight:600}
+@media(max-width:560px){.flow-step{flex:1 1 130px}.flow-arrow{display:none}}
 
 /* CHAT */
 .chat-bubble{position:fixed;right:20px;bottom:20px;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;z-index:300;background:#111;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.2);transition:transform .2s}
@@ -1451,6 +1472,7 @@ function scrollNtp(id){document.getElementById(id)&&document.getElementById(id).
 function scrollSkills(id){document.getElementById(id)&&document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
 function scrollTo03(id){document.getElementById(id)&&document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
 function scrollPaper(id){document.getElementById(id)&&document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
+function scrollTo01(id){document.getElementById(id)&&document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
 
 const menuBtn=document.getElementById('menuBtn');
 const dropdown=document.getElementById('dropdown');
